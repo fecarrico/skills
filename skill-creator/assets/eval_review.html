@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trigger Evaluation Review - __SKILL_NAME_PLACEHOLDER__</title>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background: #0f172a; color: #f8fafc; padding: 2rem; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header { background: #1e293b; padding: 2rem; border-radius: 1rem; border: 1px solid #334155; margin-bottom: 2rem; }
+        .description-box { background: #0f172a; padding: 1rem; border-radius: 0.5rem; border: 1px dashed #475569; font-style: italic; color: #94a3b8; }
+        .query-card { background: #1e293b; padding: 1.5rem; border-radius: 0.75rem; border: 1px solid #334155; margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem; transition: transform 0.2s; }
+        .query-card:hover { transform: translateY(-2px); border-color: #3b82f6; }
+        .query-text { flex: 1; font-size: 1.1rem; }
+        .toggle-btn { background: #334155; border: none; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; font-weight: bold; width: 140px; }
+        .toggle-btn.should { background: #065f46; color: #34d399; }
+        .toggle-btn.should-not { background: #7f1d1d; color: #f87171; }
+        .actions { margin-top: 3rem; display: flex; justify-content: center; }
+        .save-btn { background: #3b82f6; color: white; padding: 1rem 2rem; border-radius: 0.5rem; font-size: 1.2rem; font-weight: bold; border: none; cursor: pointer; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .save-btn:hover { background: #2563eb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Trigger Eval Review: __SKILL_NAME_PLACEHOLDER__</h1>
+            <p>Review the queries below. Toggle whether Antigravity <strong>should</strong> or <strong>should not</strong> trigger the skill for each query.</p>
+            <div class="description-box">
+                Current Description: "__SKILL_DESCRIPTION_PLACEHOLDER__"
+            </div>
+        </div>
+
+        <div id="query-list"></div>
+
+        <div class="actions">
+            <button class="save-btn" onclick="exportData()">Export Eval Set (JSON)</button>
+        </div>
+    </div>
+
+    <script>
+        let queries = __EVAL_DATA_PLACEHOLDER__;
+
+        function render() {
+            const list = document.getElementById('query-list');
+            list.innerHTML = '';
+            queries.forEach((q, i) => {
+                const card = document.createElement('div');
+                card.className = 'query-card';
+                card.innerHTML = `
+                    <div class="query-text" contenteditable="true" onblur="updateText(${i}, this.innerText)">${q.query}</div>
+                    <button class="toggle-btn ${q.should_trigger ? 'should' : 'should-not'}" onclick="toggle(${i})">
+                        ${q.should_trigger ? 'SHOULD TRIGGER' : 'SHOULD NOT'}
+                    </button>
+                    <button style="background:none; border:none; color:#f87171; cursor:pointer;" onclick="remove(${i})">✕</button>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function toggle(i) {
+            queries[i].should_trigger = !queries[i].should_trigger;
+            render();
+        }
+
+        function updateText(i, text) {
+            queries[i].query = text;
+        }
+
+        function remove(i) {
+            queries.splice(i, 1);
+            render();
+        }
+
+        function exportData() {
+            const blob = new Blob([JSON.stringify(queries, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'eval_set.json';
+            a.click();
+        }
+
+        render();
+    </script>
+</body>
+</html>
