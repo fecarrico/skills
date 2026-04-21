@@ -1,510 +1,335 @@
-UX Writing... é de comer ou passar no cabelo?
-O UX Writing é o design de conteúdo que integra diretamente a interface do aplicativo. Ele abrange botões, instruções, mensagens de erro, notificações e toda comunicação com o usuário, garantindo clareza, concisão e orientação para ação.
+# Manual de UX Writing — SuperApp Sem Parar
 
-Benefícios para os usuários
-Quando bem aplicado:
-	•	Facilita a navegação intuitiva
-	•	Reduz erros e frustrações
-	•	Aumenta o engajamento e a retenção
-	•	Torna o uso mais agradável e eficiente
-	•	Ajuda o usuário a alcançar seus objetivos com facilidade
+---
 
-Benefícios para o negócio
-	•	Fortalece a identidade da marca
-	•	Garante tom e personalidade consistentes
-	•	Aumenta conversões
-	•	Torna a comunicação clara e estratégica
-	•	Alinha a experiência aos objetivos do negócio
+## O que é UX Writing
 
-UX Writing vem junto com o design, não depois
-Para ser eficaz, precisa ser desenvolvido junto com a interface.
-Essa integração:
-	•	Cria um sistema único entre texto e visual
-	•	Define hierarquia e sequência de ações
-	•	Organiza melhor os elementos na tela
-	•	Gera experiências mais eficazes para usuário e negócio
+UX Writing é o design de conteúdo que integra diretamente a interface do aplicativo. Abrange botões, instruções, mensagens de erro, notificações e toda comunicação com o usuário, garantindo clareza, concisão e orientação para ação.
 
-“O conteúdo é a experiência do usuário”
+### Por que importa
 
-A lógica por trás do UX Writing
-	•	Texto guia da experiência
-	•	Conciso, claro e objetivo
-	•	Instrutivo e útil
+**Para os usuários:**
+- Facilita a navegação intuitiva
+- Reduz erros e frustrações
+- Aumenta o engajamento e a retenção
+- Torna o uso mais agradável e eficiente
+- Ajuda o usuário a alcançar seus objetivos com facilidade
 
-Geometria de conteúdo
-A forma como o conteúdo é organizado importa (e muito):
-	•	Simplicidade = escreva como as pessoas falam e elimine excessos
-	•	Consistência = conexão entre o que foi dito e o que vem a seguir
-	•	Hierarquia = o mais importante primeiro, o mais complexo depois
+**Para o negócio:**
+- Fortalece a identidade da marca
+- Garante tom e personalidade consistentes
+- Aumenta conversões
+- Torna a comunicação clara e estratégica
+- Alinha a experiência aos objetivos do negócio
 
-Boas práticas
-	•	Princípios: utilidade + orientação
-	•	Pilares: usabilidade + semântica + arquitetura
+> "O conteúdo é a experiência do usuário"
 
-“Mais do que textinho: ajudar as pessoas a encontrar, entender e usar”
+### UX Writing vem junto com o design, não depois
 
-Design Thinking de Conteúdo
-	•	Entender (fazer sentido e fazer sentir)
-	•	Escrever (narrativa e conteúdo)
-	•	Experimentar (testes e validações)
+Para ser eficaz, precisa ser desenvolvido junto com a interface. Essa integração:
+- Cria um sistema único entre texto e visual
+- Define hierarquia e sequência de ações
+- Organiza melhor os elementos na tela
+- Gera experiências mais eficazes para usuário e negócio
 
-UX vs UX Writing
-UX é atender necessidades. UX Writing é:
-	•	Cognição: frases curtas, palavras comuns, sentimentos
-	•	Consistência: padronização que gera confiança
-	•	Conversa: organização pensando em ação e reação
+---
 
-HEADER
-1. O que o mercado mais usa hoje
-Não existe um padrão absoluto, mas há tendências.
-Produtos digitais usam capitalização de sentença:
-	•	Histórico de pagamento
-	•	Formas de pagamento
-	•	Detalhes do pedido
-	•	Configurações da conta
+## Princípios de Escrita
 
-2. O que faz mais sentido em UX
-Header não é título editorial. Ele é orientação de navegação.
-Responde silenciosamente:
-	•	Onde estou?
-	•	Em que etapa estou?
-	•	O que posso fazer aqui?
-Funciona melhor quando:
-	•	Parece natural
-	•	Parece fala humana
-	•	É fácil de escanear
-	•	Não chama mais atenção do que deveria
+### Geometria de conteúdo
+A forma como o conteúdo é organizado importa:
+- **Simplicidade**: escreva como as pessoas falam e elimine excessos
+- **Consistência**: conexão entre o que foi dito e o que vem a seguir
+- **Hierarquia**: o mais importante primeiro, o mais complexo depois
 
-Por que usar capitalização de sentença
-	•	Reduz carga cognitiva
-	•	Melhora escaneabilidade
-	•	Soa mais humano
-	•	É mais acessível
-	•	Padroniza com microcopy
+### Pilares
+- Utilidade e orientação
+- Usabilidade, semântica e arquitetura de informação
 
-Padrão recomendado
-	•	Apenas a primeira palavra em maiúscula
-	•	Nomes próprios seguem regra normal
-	•	Sem ponto final
+### Cognição, Consistência e Conversa
+- **Cognição**: frases curtas, palavras comuns, sentimentos
+- **Consistência**: padronização que gera confiança
+- **Conversa**: organização pensando em ação e reação
+
+---
+
+## Componentes de Interface
+
+### Header
+
+O header está orientando a navegação, não titulando um artigo. Ele responde silenciosamente: *Onde estou? Em que etapa estou? O que posso fazer aqui?*
+
+**Padrão recomendado:** Capitalização de sentença
+- Apenas a primeira palavra em maiúscula
+- Nomes próprios seguem a regra gramatical normal
+- Sem ponto final
+
+| ✅ Correto | ❌ Evitar |
+|---|---|
+| Histórico de pagamento | Histórico De Pagamento |
+| Formas de pagamento | FORMAS DE PAGAMENTO |
+| Detalhes do veículo | Detalhes Do Veículo |
+| Resumo da contratação | Resumo Da Contratação |
+
+**Por que capitalização de sentença:**
+- Reduz carga cognitiva
+- Melhora escaneabilidade
+- Soa mais humano e acessível
+- Padroniza com microcopy
+
+---
+
+### Título Principal
+
+O título não é editorial nem botão. Funciona como instrução contextual, respondendo: *O que faço aqui? O que o app espera de mim?*
+
+**Como escrever:**
+- Use verbo no imperativo: fala direto com o usuário, reduz esforço cognitivo
+- Use "seu/sua" para personalizar: soa menos autoritário
+- Mantenha objetivo claro
+
+| ✅ Correto | ❌ Evitar |
+|---|---|
+| Cadastre seu cartão para continuar | Cadastre o cartão para prosseguir |
+| Escolha sua forma de pagamento | Escolha a forma de pagamento |
+
+---
+
+### Subtítulo
+
+O subtítulo não é decorativo: é funcional. Responde: *O que acontece se eu fizer isso?*
+
+**Função principal:**
+- Explicar o que vai acontecer
+- Antecipar o resultado
+- Reduzir dúvidas e trazer contexto
+- Reforçar segurança
+
+**Como escrever:** Claro, curto, complementar (não repetitivo em relação ao título)
+
+| ✅ Correto | ❌ Evitar |
+|---|---|
+| Título: "Pague agora" + Subtítulo: "Escolha como pagar e finalize em segundos" | Título: "Pague agora" + Subtítulo: "Faça o pagamento agora" |
+
+**O que evitar:** Repetição, texto longo, informação irrelevante, linguagem técnica, misturar mensagens.
+
+---
+
+### CTA (Call to Action)
+
+O CTA é a tradução da próxima ação. Responde: *O que acontece se eu clicar? Vale a pena clicar?*
+
+**Tamanho ideal:** 1 a 3 palavras (máximo 4 se necessário)
+
+**Estrutura:** Verbo + ação clara (preferencialmente no infinitivo)
+
+| ✅ Usar | ❌ Evitar |
+|---|---|
+| Continuar | Próximo |
+| Confirmar pagamento | Clique aqui para continuar |
+| Cadastrar cartão | Prosseguir para a próxima etapa |
+| Ver detalhes | OK |
+| Concluir | Finalizar (genérico) |
+| Agora não | Cancelar (ambíguo) |
+| Excluir | Remover (quando for ação crítica) |
+
+**Regra essencial:** O CTA deve repetir a ação do contexto.
+
+Exemplo de consistência:
+- Header: "Formas de pagamento"
+- Texto: "Cadastre seu cartão para continuar"
+- CTA: "Cadastrar cartão"
+
+---
+
+### Mensagens de Erro
+
+#### Erro genérico/sistêmico
+Falha interna do sistema — não depende do usuário, pode ocorrer em várias telas.
+
 Exemplos:
-	•	Histórico de pagamento
-	•	Formas de pagamento
-	•	Detalhes do veículo
-	•	Resumo da contratação
-
-TÍTULO PRINCIPAL
-Papel do título
-Não é título editorial nem botão. Funciona como instrução contextual.
-Responde:
-	•	O que faço aqui?
-	•	O que o app espera de mim?
-
-O que ele precisa fazer
-	•	Guiar
-	•	Dar segurança
-	•	Reduzir ambiguidade
-	•	Antecipar o próximo passo
-
-Verbo no imperativo
-Exemplo: Cadastre seu cartão
-Por quê?
-	•	Fala direto com o usuário
-	•	Reduz esforço cognitivo
-	•	Funciona como micro-CTA
-	•	Mantém consistência com botões
-
-Tom de voz
-Imperativo ≠ autoritário
-❌ Cadastre o cartão para prosseguir ✅ Cadastre seu cartão para continuar
-Diferença:
-	•	Uso de “seu”
-	•	Linguagem simples
-	•	Objetivo claro
-
-SUBTÍTULO
-Papel do subtítulo
-Não é decorativo. É funcional.
-Responde:
-“O que acontece se eu fizer isso?”
-
-Função principal
-	•	Explicar o que vai acontecer
-	•	Antecipar o resultado
-	•	Reduzir dúvidas
-	•	Trazer contexto
-	•	Reforçar segurança
-
-Como escrever
-	•	Claro
-	•	Curto
-	•	Complementar (não repetitivo)
-
-Exemplo
-❌ Título: Pague agora Subtítulo: Faça o pagamento agora
-✅ Título: Pague agora Subtítulo: Escolha como pagar e finalize em segundos
-
-O que evitar
-	•	Repetição
-	•	Texto longo
-	•	Informação irrelevante
-	•	Linguagem técnica
-	•	Misturar mensagens
-
-CTA (Call to Action)
-Papel do CTA
-É a tradução da próxima ação.
-Responde:
-	•	O que acontece se eu clicar?
-	•	Vale a pena clicar?
-	•	Isso me aproxima do objetivo?
-
-Tamanho ideal
-	•	1 a 3 palavras
-	•	Máximo de 4 (se necessário)
-Exemplos:
-	•	Continuar
-	•	Confirmar pagamento
-	•	Cadastrar cartão
-	•	Ver detalhes
-
-O que evitar
-	•	Frases longas
-	•	Explicações no botão
-❌ Clique aqui para continuar ❌ Prosseguir para a próxima etapa
-
-Estrutura ideal
-Verbo + ação clara
-	•	Continuar
-	•	Confirmar
-	•	Salvar
-	•	Finalizar
-
-Tempo verbal
-Imperativo é o padrão:
-	•	Continuar
-	•	Confirmar dados
-	•	Finalizar compra
-
-Regra essencial
-CTA deve repetir a ação do contexto.
-Exemplo:
-	•	Header: Formas de pagamento
-	•	Texto: Cadastre seu cartão para continuar
-	•	CTA: Cadastrar cartão
-
-MENSAGENS DE ERRO
-Erro genérico/sistêmico
-Falha interna do sistema.
-Características
-	•	Não depende do usuário
-	•	Pode ocorrer em várias telas
-	•	Falta de informação específica
-
-Exemplos
-	•	“Algo deu errado! Por favor, tente novamente”
-	•	“Algo deu errado! Por favor, tente mais tarde”
-
-Erros específicos
-O sistema sabe o que deu errado.
-Características
-	•	Ligado a uma ação do usuário
-	•	Identifica o problema
-	•	Pode ser resolvido rapidamente
-
-Estrutura ideal
-	•	O que aconteceu
-	•	Onde aconteceu
-	•	Como resolver
-
-Erros em campos
-	•	Devem ser curtos
-	•	Focar no erro (não na explicação)
-
-SNACKBARS
-O que são
-Feedback rápido após uma ação.
-Características
-	•	Temporárias
-	•	Não interrompem o fluxo
-	•	Mensagem curta
-
-Boas práticas
-	•	Linguagem neutra
-	•	Apenas informação essencial
-	•	Uso de ponto final
-
-Exemplos
-✅ O cartão foi cancelado. ❌ O cartão foi cancelado com sucesso!
-
-ALERTAS
-O que são
-Mensagens para situações críticas.
-Características
-	•	Chamam atenção
-	•	Podem interromper o fluxo
-	•	Indicam ação necessária
-
-REPETIÇÃO DE TERMOS
-Por que repetir?
-A repetição é intencional e baseada em psicologia cognitiva.
-
-Benefícios
-1. Clareza e orientação
-	•	Reduz esforço mental
-	•	Conecta contexto e ação
-
-2. Redução de erros
-	•	Mantém consistência
-	•	Evita confusão
-
-3. Base cognitiva
-	•	Lei de Miller
-	•	Chunking
-	•	Gestalt
-
-4. Experiência confiável
-	•	Facilita leitura rápida
-	•	Evita dúvidas
-
-Quando repetir
-	•	Entre header e instrução
-Exemplo:
-Header: Voucher de abastecimento Texto: Defina o valor do seu voucher de abastecimento
-
-Quando evitar repetição
-	•	Na mesma frase
-	•	Entre título e subtítulo
-Exemplo:
-❌ Título: Digite a senha do cartão Subtítulo: Aqui você informa a senha do seu cartão
-
-Exemplo 1: Botão (CTA)
-Componente: Botão
-Quando usar
-Acionar uma ação clara dentro do fluxo.
-
-Hierarquia
-	•	Primário: ação principal da tela
-	•	Secundário: ação alternativa ou de apoio
-	•	Terciário: ações menos relevantes
-
-Como escrever
-Estrutura
-	•	Verbo no infinitivo
-	•	Máximo de 2 palavras (preferencial)
-	•	Direto e acionável
-
-Padrões por intenção
-Intenção
-Usar
-Evitar
-Avançar fluxo
-Continuar
-Próximo
-Voltar
-Ir para o início
-Voltar
-Finalizar ação
-Concluir
-Finalizar (genérico)
-Confirmar decisão
-Confirmar
-OK
-Cancelar / sair
-Agora não
-Cancelar (ambíguo)
-Ação destrutiva
-Excluir
-Remover (quando crítico)
-
-Boas práticas
-	•	Evitar termos genéricos como “OK”
-	•	O texto do botão deve antecipar o que acontece depois do clique
-	•	Manter consistência ao longo do fluxo
-
-Exemplos reais
-	•	“Continuar” (onboarding)
-	•	“Concluir pagamento”
-	•	“Ir para o início”
-
-
-Exemplo 2: Modal de erro
-Componente: Modal de feedback — Erro
-Quando usar
-Falhas que impedem o usuário de continuar no fluxo.
-
-Estrutura do conteúdo
-	•	Título: o que aconteceu
-	•	Descrição: detalhe + orientação (quando necessário)
-	•	Botão: ação clara
-
-Como escrever
-Título
-	•	Direto e específico
-	•	Evitar termos técnicos
-Ex:
-	•	“Não foi possível carregar as informações”
-
-Descrição
-	•	Explica o motivo (se relevante)
-	•	Orienta o que fazer
-Ex:
-	•	“Tente novamente em instantes”
-
-Botão
-	•	Sempre acionável
-Ex:
-	•	“Tentar novamente”
-
-Variações
-Erro genérico (sistema indisponível)
-	•	Título: claro e amplo
-	•	Descrição: sem detalhe técnico
-	•	CTA: tentar novamente
-
-Boas práticas
-	•	Não culpar o usuário ou a empresa
-	•	Evitar linguagem técnica
-	•	Sempre que possível, oferecer saída
-
-Exemplos reais
-	•	“Não foi possível concluir o pagamento. Verifique os dados e tente novamente.”
-
-
-Exemplo 3: Campo de formulário
-Componente: Input
-Quando usar
-Coleta de dados do usuário.
-
-Elementos de conteúdo
-	•	Label
-	•	Placeholder (opcional)
-	•	Mensagem de erro
-	•	Texto de ajuda (helper)
-
-Como escrever
-Label
-	•	Nome claro e direto
-	•	Evitar frases
-Ex:
-	•	“CPF”
-	•	“Data de nascimento”
-
-Placeholder
-	•	Exemplo de preenchimento
-	•	Não substituir o label
-Ex:
-	•	“000.000.000-00”
-
-Mensagem de erro
-Estrutura: campo + problema + ação
-Ex:
-	•	“CPF inválido. Revise os números e tente novamente.”
-
-Helper text
-	•	Explica quando necessário
-	•	Antecipar dúvida
-Ex:
-	•	“Use o mesmo CPF do titular da conta”
-
-Boas práticas
-	•	Evitar repetir informação entre label e placeholder
-	•	Priorizar clareza sobre brevidade em erros
-
-
-
-
-
-
-Lista de itens para padronizar no Content System
-Botões (CTAs)
-	•	Avançar fluxo (Continuar vs Próximo)
-	•	Voltar (ex: “Ir para o início”)
-	•	Cancelar / sair
-	•	Confirmar ação
-	•	Finalizar ação (Concluir vs Finalizar)
-	•	Ações destrutivas (Excluir, Cancelar serviço)
-	•	Estados do botão (carregando, desabilitado)
-
-Navegação
-	•	Títulos de tela (estrutura: ação vs substantivo)
-	•	Nome de menus e categorias
-	•	Breadcrumbs
-	•	Tabs (abas)
-	•	Padrão de uso de “seu/sua”
-
-Mensagens de sistema
-	•	Erro genérico (sistema indisponível)
-	•	Erro específico (ex: pagamento recusado)
-	•	Sucesso (ação concluída)
-	•	Alertas (antes de uma ação crítica)
-	•	Informativos (sem ação obrigatória)
-
-Estados de interface
-	•	Empty state (sem conteúdo)
-	•	Sem resultados (busca/filtro)
-	•	Loading (carregando)
-	•	Erro dentro de componente (ex: lista quebrada)
-	•	Primeiro acesso (sem histórico)
-
-Formulários
-	•	Labels (nomes dos campos)
-	•	Placeholders
-	•	Mensagens de erro de campo
-	•	Helper text (ajuda contextual)
-	•	Máscaras e formatação (datas, CPF, etc.)
-
-Onboarding e fluxos guiados
-	•	CTA principal (Continuar vs Próximo)
-	•	Estrutura de título (benefício vs instrução)
-	•	Descrições (curtas e escaneáveis)
-	•	Indicadores de progresso (passo 1, 2, 3)
-	•	Encerramento do fluxo
-
-Ações críticas
-	•	Confirmação de cancelamento
-	•	Exclusão de conta/serviço
-	•	Pagamentos
-	•	Contratação de serviços
-
-Feedback rápido (microinterações)
-	•	Toasts / snackbars
-	•	Confirmações rápidas (ex: “Salvo com sucesso”)
-	•	Feedback de ação instantânea
-
-Naming dentro do produto
-	•	Nomes de funcionalidades
-	•	Categorias
-	•	Itens de menu
-	•	Consistência de termos (evitar sinônimos)
-
-Convenções de escrita
-	•	Datas (abril vs Abril)
-	•	Horários
-	•	Números (1 vs um)
-	•	Uso de pronomes (você, seu)
-
-Estados de jornada
-	•	Usuário sem cadastro completo
-	•	Usuário com pendência
-	•	Usuário elegível / não elegível
-	•	Usuário com erro recorrente
-
-Comunicação de status
-	•	“Em análise”
-	•	“Aprovado”
-	•	“Recusado”
-	•	“Processando”
-👉 Padronizar:
-	•	tempo verbal
-	•	nível de clareza
-	•	quando detalhar ou não
-
-Localização e contexto
-	•	Mensagens com base em localização (ex: postos próximos)
-	•	Permissões (ex: acesso à localização)
-
-Permissões e acessos
-	•	Solicitação de permissão (notificação, localização)
-	•	Explicação de por que pedir
-	•	Estado negado (o que fazer)
+- "Algo deu errado! Por favor, tente novamente"
+- "Algo deu errado! Por favor, tente mais tarde"
 
+#### Erro específico
+O sistema sabe o que deu errado — ligado a uma ação do usuário, identificável e resolvível.
+
+**Estrutura ideal:**
+1. O que aconteceu
+2. Onde aconteceu
+3. Como resolver
+
+Exemplo: "Não foi possível concluir o pagamento. Verifique os dados e tente novamente."
+
+#### Erros em campos
+- Devem ser curtos
+- Focar no erro, não na explicação
+- Estrutura: campo + problema + ação
+
+Exemplo: "CPF inválido. Revise os números e tente novamente."
+
+**Boas práticas gerais:**
+- Não culpar o usuário ou a empresa
+- Evitar linguagem técnica
+- Sempre oferecer saída (botão de ação)
+
+---
+
+### Snackbars
+
+Feedback rápido após uma ação — temporários, não interrompem o fluxo, mensagem curta.
+
+**Boas práticas:**
+- Linguagem neutra
+- Apenas informação essencial
+- **Usar ponto final**
+- Sem exclamação ou exagero emocional
+
+| ✅ Correto | ❌ Evitar |
+|---|---|
+| O cartão foi cancelado. | O cartão foi cancelado com sucesso! |
+| Salvo com sucesso. | Ótimo! Arquivo salvo! |
+
+---
+
+### Alertas
+
+Mensagens para situações críticas — chamam atenção, podem interromper o fluxo e indicam ação necessária.
+
+---
+
+### Botões (detalhes por intenção)
+
+| Intenção | ✅ Usar | ❌ Evitar |
+|---|---|---|
+| Avançar fluxo | Continuar | Próximo |
+| Voltar | Ir para o início | — |
+| Finalizar ação | Concluir | Finalizar (genérico) |
+| Confirmar decisão | Confirmar | OK |
+| Cancelar / sair | Agora não | Cancelar (ambíguo) |
+| Ação destrutiva | Excluir | Remover (quando crítico) |
+
+**Boas práticas:**
+- Evitar termos genéricos como "OK"
+- O texto do botão deve antecipar o que acontece depois do clique
+- Manter consistência ao longo do fluxo
+
+---
+
+### Campos de Formulário (Input)
+
+Elementos de conteúdo em um campo:
+- **Label**: nome claro e direto (ex: "CPF", "Data de nascimento")
+- **Placeholder**: exemplo de preenchimento, não substitui o label (ex: "000.000.000-00")
+- **Mensagem de erro**: campo + problema + ação (ex: "CPF inválido. Revise os números e tente novamente.")
+- **Helper text**: explica quando necessário, antecipa dúvida (ex: "Use o mesmo CPF do titular da conta")
+
+**Boas práticas:**
+- Evitar repetir informação entre label e placeholder
+- Priorizar clareza sobre brevidade em erros
+
+---
+
+## Repetição de Termos
+
+A repetição intencional é baseada em psicologia cognitiva (Lei de Miller, Chunking, Gestalt).
+
+**Quando repetir** — entre header e instrução:
+- Header: "Voucher de abastecimento"
+- Texto: "Defina o valor do seu voucher de abastecimento"
+
+**Quando evitar** — na mesma frase ou entre título e subtítulo:
+
+| ❌ Errado | ✅ Correto |
+|---|---|
+| Título: "Digite a senha do cartão" + Subtítulo: "Aqui você informa a senha do seu cartão" | Título: "Digite a senha do cartão" + Subtítulo: "Você tem 3 tentativas disponíveis" |
+
+---
+
+## Termos Preferenciais do Produto
+
+| ✅ Usar | ❌ Evitar |
+|---|---|
+| SuperApp Sem Parar | Aplicativo, app |
+| tag | adesivo, transponder |
+| carro | veículo, automóvel |
+
+---
+
+## Convenções de Escrita
+
+- **Datas**: abril (minúsculo, sem abreviação)
+- **Horários**: 14h30 (sem espaço, sem "horas")
+- **Números**: escrever por extenso até 9 (um, dois... nove), numeral a partir de 10
+- **Pronomes**: "você", "seu/sua" — nunca tutear nem usar "vós"
+- **Ponto final**: usar em snackbars e descrições; não usar em headers e CTAs
+
+---
+
+## Checklist de Padronização por Contexto
+
+### Botões (CTAs)
+- Avançar fluxo (Continuar vs Próximo)
+- Voltar (ex: "Ir para o início")
+- Cancelar / Sair
+- Confirmar ação
+- Finalizar ação (Concluir vs Finalizar)
+- Ações destrutivas (Excluir, Cancelar serviço)
+- Estados do botão (carregando, desabilitado)
+
+### Navegação
+- Títulos de tela (estrutura: ação vs substantivo)
+- Nome de menus e categorias
+- Tabs (abas)
+- Padrão de uso de "seu/sua"
+
+### Mensagens de Sistema
+- Erro genérico (sistema indisponível)
+- Erro específico (ex: pagamento recusado)
+- Sucesso (ação concluída)
+- Alertas (antes de uma ação crítica)
+- Informativos (sem ação obrigatória)
+
+### Estados de Interface
+- Empty state (sem conteúdo)
+- Sem resultados (busca/filtro)
+- Loading (carregando)
+- Erro dentro de componente (ex: lista quebrada)
+- Primeiro acesso (sem histórico)
+
+### Formulários
+- Labels (nomes dos campos)
+- Placeholders
+- Mensagens de erro de campo
+- Helper text (ajuda contextual)
+- Máscaras e formatação (datas, CPF, etc.)
+
+### Onboarding e Fluxos Guiados
+- CTA principal (Continuar vs Próximo)
+- Estrutura de título (benefício vs instrução)
+- Descrições (curtas e escaneáveis)
+- Indicadores de progresso (passo 1, 2, 3)
+- Encerramento do fluxo
+
+### Ações Críticas
+- Confirmação de cancelamento
+- Exclusão de conta/serviço
+- Pagamentos
+- Contratação de serviços
+
+### Feedback Rápido (Microinterações)
+- Toasts / snackbars
+- Confirmações rápidas (ex: "Salvo com sucesso.")
+- Feedback de ação instantânea
+
+### Comunicação de Status
+Padronizar tempo verbal, nível de clareza, e quando detalhar ou não:
+- "Em análise"
+- "Aprovado"
+- "Recusado"
+- "Processando"
+
+### Permissões e Acessos
+- Solicitação de permissão (notificação, localização)
+- Explicação de por que pedir
+- Estado negado (o que fazer)

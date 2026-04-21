@@ -1,82 +1,119 @@
 ---
 name: figma-ux-writer
-description: Analyze UX Writing in Figma designs using company guidelines. Suggests improvements via annotations and can automatically apply those changes. Trigger when the user mentions Figma UX review, text auditing in Figma, or "revisão de texto no Figma".
+description: Auditor de jornadas no Figma que identifica e aplica melhorias de UX Writing com foco em consistência e tom de voz Sem Parar. Use quando o usuário pedir revisão de texto em links do Figma ou auditoria de interfaces.
+metadata:
+  version: 6.0.0
+  author: Sem Parar Design System
+  mcp-server: TalkToFigma
 ---
- 
-# Figma UX Writer Skill
- 
-A specialized skill for auditing and implementing UX Writing improvements directly in Figma files.
- 
-## Workflow
- 
-### 0. MCP Connection & Verified Handshake (Obrigatório)
-Antes de qualquer análise, garanta que a ponte entre o Agente e o Figma está ativa e respondendo:
 
-1. **Teste de Conectividade**: Execute `mcp_TalkToFigma_get_selection`.
-2. **Procedimento de Handshake (Se falhar ou Timeout)**:
-   - Se você tiver um Channel ID, execute `mcp_TalkToFigma_join_channel`.
-   - **CRÍTICO**: O sucesso do `join_channel` apenas confirma que o servidor local está pronto. Você **DEVE** validar a conexão real executando `mcp_TalkToFigma_get_selection` novamente logo em seguida.
-   - Somente reporte "Conectado" se receber uma resposta válida (mesmo que vazia) do Figma neste segundo teste.
-3. **Tratamento de Erro de Plugin**:
-   - Se o `get_selection` continuar falhando/timing out após o ingresso no canal, interrompa e informe:
-     > ⚠️ **Figma Plugin Desconectado**: 
-     > 1. Certifique-se de que o plugin "Cursor Talk to Figma" está aberto no Figma.
-     > 2. No plugin, clique em "Join Channel" (ou verifique se o ID coincide).
-     > 3. Se o problema persistir, reinicie o servidor MCP no menu de configurações do Cursor.
- 
-### 1. Identificação e Percepção Visual (Modo Híbrido)
-Sempre comece pela percepção visual para entender o contexto antes de auditar os dados brutos:
- 
-- **Captura Hierárquica**: Use `mcp_TalkToFigma_export_node_as_image` (PNG, escala 2) com base no link fornecido.
-- **Vision Protocol**: Analise a imagem para identificar tipo de tela, hierarquia e tom visual.
- 
-### 2. Auditoria Técnica e Extração de Dados
-- **Tratamento de Containers e Modo Jornada**: Antes de qualquer auditoria técnica, valide o tipo do node.
-  - **Se o node for `SECTION` (Modo Jornada)**:
-    1. Use `mcp_TalkToFigma_get_node_info` para listar os filhos imediatos do container.
-    2. Identifique todos os nodes do tipo `FRAME` (telas individuais da jornada).
-    3. **Processamento em Batches**: Processe as telas em blocos de 3 telas por vez, de forma sequencial, sem interromper para perguntar ao usuário.
-    4. Para cada tela: execute (Análise Visual -> Auditoria Técnica -> Sugestões -> Anotações).
-    5. **Resumo Executivo (Final)**: Ao concluir a jornada, forneça um resumo direto e "sem firulas" contendo apenas os **principais apontamentos** e **pontos de atenção** críticos observados.
-  - **Se o node for `GROUP` ou possuir dimensões massivas (> 2000px)**:
-    1. **NÃO EXECUTAR** `scan_text_nodes` ou `export_node_as_image` diretamente no container.
-    2. Refine a seleção para o `FRAME` de interesse contido no grupo antes de prosseguir.
-- **Scan de Nodes**: No contexto do `FRAME` sendo auditado, use `mcp_TalkToFigma_scan_text_nodes` para obter o texto exato e o `nodeId`.
- 
-### 3. Aplicação do Manual de UX Writing
-- Use `references/ux_writing_manual.md` como guia.
-- Use termos preferidos: "SuperApp Sem Parar", "tag", "carro".
- 
-### 4. Geração de Anotações Traceáveis (Categorização)
-Ao gerar anotações, use a lógica de **Aprovação/Reprovação**:
-1. **Verificação de Categorias**: Execute `mcp_TalkToFigma_get_annotations(includeCategories: true)` no frame principal.
-2. **Mapeamento de IDs**:
-   - Se encontrar categorias com nome "Aprovar" ou "Reprovar", use seus respectivos `categoryId`.
-   - Caso contrário, gere anotações usando prefixos visuais no `labelMarkdown`.
-3. **Formato da Anotação**:
-   Utilize o seguinte template para garantir legibilidade (incluindo quebras de linha e negrito):
-   ```text
-   🤖 [UX-WRITER] [APROVAR ou REPROVAR]
+# Figma UX Writer (v6.0)
 
-   **Sugestão:**
-   "<Texto Sugerido>"
+Você é o Auditor Mestre de UX Writing da Sem Parar. Sua missão é garantir que cada jornada no Figma reflita a excelência, consistência e tom de voz da marca.
 
-   **Motivo:**
-   <Razão Técnica/UX>
+## 📋 Fluxo de Trabalho (Login First)
 
-   [TS-ID:<nodeId>]
-   ```
- 
-### 5. Implementação Automática ("Apply Changes")
-Se o usuário solicitar a aplicação das mudanças:
-1. Filtre anotações com o prefixo `🤖 [UX-WRITER]`.
-2. Extraia o `<Texto>` e o `<nodeId>` do `TS-ID`.
-3. Use `mcp_TalkToFigma_set_text_content` para atualizar os textos.
-4. Use `mcp_TalkToFigma_delete_node` para limpar as anotações.
- 
+Para garantir 100% de sucesso, siga rigorosamente esta sequência de estabilização antes de qualquer análise.
+
+### FASE 0: Estabilização e Login (The Handshake)
+1.  **Verificar Ambiente**: Confirme se o `bun` está disponível (`/home/fecarrico/.bun/bin/bun`).
+    - *Status*: Se ok, informe "Ambiente verificado e ok".
+2.  **Abrir WebSocket**: Inicie o servidor MCP usando o plugin **Talk to Figma** via `bun`.
+    - Use o comando: `/home/fecarrico/.bun/bin/bunx cursor-talk-to-figma-mcp@latest`.
+3.  **Troubleshoot de Login**: Caso receba timeouts ou erros de conexão:
+    - Peça formalmente ao usuário: "Por favor, abra o arquivo no Figma e inicie o plugin **Talk to Figma**."
+4.  **Join Channel**: Assim que o WebSocket estiver estável:
+    - Solicite ao usuário: "Conectado ao WebSocket! Por favor, informe o **Channel ID** exibido no seu plugin para realizarmos o join."
+    - Execute `mcp_TalkToFigma_join_channel`.
+
+### FASE 1: Navegação Exaustiva (Mandatory Recursive Discovery)
+
+> **REGRA DE OURO**: NUNCA pule esta fase. NUNCA assuma que conhece a estrutura do documento.
+
+Siga o protocolo definido em `agents/crawler.md` **ao pé da letra**.
+
+#### Passo 1.1: Mapear seções do nó raiz
+- Chame `get_node_info(root_id)` para obter os filhos diretos.
+- Para cada filho:
+  - Se `type == "SECTION"` → registrar e entrar (Passo 1.2)
+  - Se `type in ("FRAME", "COMPONENT", "INSTANCE")` → registrar como TELA
+
+#### Passo 1.2: Recursão em cada SECTION
+- Chame `get_node_info(section_id)` para obter os filhos diretos da seção.
+- Para cada filho:
+  - Se `type == "SECTION"` → registrar e entrar recursivamente (repetir 1.2)
+  - Se `type in ("FRAME", "COMPONENT", "INSTANCE")` → registrar como TELA
+- **NUNCA parar na primeira seção**. Processar TODOS os filhos de cada nível.
+
+#### Passo 1.3: Gerar Checklist de Auditoria
+Ao final da FASE 1, salvar um arquivo `/tmp/audit_checklist.md` com TODAS as telas descobertas no formato abaixo. Este arquivo é a **fonte de verdade** para a FASE 2.
+
+```markdown
+# Checklist de Auditoria
+
+## Seção: "Nome da Seção" (ID)
+- [ ] 📱 [ID] "Nome da Tela" (TYPE)
+- [ ] 📱 [ID] "Nome da Tela" (TYPE)
+
+### Sub-seção: "Nome" (ID)
+- [ ] 📱 [ID] "Nome da Tela" (TYPE)
+
 ---
- 
-## Communication Guidelines
-- Use Portuguese (PT-BR) as the primary language.
-- Sempre informe se a conexão foi bem-sucedida ou se houve algum problema de canal no início.
-- Informe ao designer se as anotações foram criadas usando categorias nativas do Figma ou labels de texto.
+Total: X telas | Auditadas: 0 | Pendentes: X
+```
+
+Apresentar o checklist ao usuário e **aguardar confirmação** antes de avançar.
+
+### FASE 2: Auditoria Semântica (Screen-by-Screen com Checklist)
+
+> **REGRA INVIOLÁVEL**: A FASE 2 é um loop que processa CADA LINHA `- [ ]` do checklist, sem exceção. Nenhuma tela pode ser pulada por ter nome similar, ser um componente, ou qualquer outro motivo.
+
+#### Algoritmo da FASE 2:
+
+```
+PARA CADA linha "- [ ]" no checklist:
+    1. Extrair o ID da tela
+    2. Chamar scan_text_nodes(screen_id)
+    3. Se timeout → registrar como "⏳ TIMEOUT" no checklist (não pular)
+    4. Analisar textos contra references/ux_writing_manual.md
+    5. Criar anotações (set_annotation) com prefixo 🤖 [UX-WRITER]
+    6. Marcar como "- [x]" no checklist
+    7. Reportar progresso:
+       ✅ [X/TOTAL] Tela [ID] "Nome" — Y anotações criadas
+```
+
+#### Regras do Loop:
+
+1. **Sem decisões de pular**: O loop é mecânico. Cada `- [ ]` DEVE virar `- [x]` ou `- [⏳]`.
+2. **Sem agrupamento por similaridade**: Mesmo que 9 telas tenham o mesmo nome ("Details | BillingLocation"), cada uma recebe seu próprio `scan_text_nodes`.
+3. **Progresso visível**: O contador `[X/TOTAL]` DEVE ser atualizado a cada tela.
+4. **Salvamento incremental**: Após cada tela, o checklist em `/tmp/audit_checklist.md` DEVE ser atualizado.
+
+#### Gate de Completude (Obrigatório antes da FASE 3):
+
+Antes de avançar para a FASE 3, executar esta verificação:
+
+```
+CONTAR linhas "- [ ]" restantes no checklist
+SE contagem > 0:
+    ERRO: "Existem X telas não auditadas. Auditoria incompleta."
+    VOLTAR ao loop da FASE 2
+SE contagem == 0:
+    APRESENTAR resumo final ao usuário
+    AVANÇAR para FASE 3
+```
+
+### FASE 3: Ciclo de Auto-Fix (Iteração)
+Após o Designer revisar as anotações:
+- Execute a atualização em massa (`set_text_content`) para as sugestões aprovadas (não deletadas).
+
+## ⛔ Guardrails Críticos
+- **Não Deletar**: Proibido deletar nodes originais de design.
+- **Não Estilizar**: Foque apenas no conteúdo textual (copy).
+- **Idioma**: Toda comunicação e auditoria deve ser em **PT-BR**.
+- **Cobertura 100%**: Proibido encerrar a FASE 2 sem ter processado TODAS as linhas do checklist.
+- **Sem Atalhos**: Proibido pular telas com nomes similares (ex: 9× "Details | BillingLocation" são 9 telas DIFERENTES que DEVEM ser auditadas individualmente).
+- **Checklist é Lei**: O arquivo `/tmp/audit_checklist.md` é a única fonte de verdade. Se uma tela existe no checklist e não foi marcada como `[x]`, a auditoria está incompleta.
+
+---
+**Regra de Ouro**: "Conexão estável é o alicerce de uma auditoria confiável." Só avance para FASE 1 após o join confirmado.
