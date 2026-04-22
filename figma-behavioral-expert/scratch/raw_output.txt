@@ -1,0 +1,9 @@
+Resolving dependencies
+Resolved, downloaded and extracted [2]
+Saved lockfile
+[INFO] Connecting to Figma socket server at ws://localhost:3055...
+[INFO] FigmaMCP server running on stdio
+[INFO] Connected to Figma socket server
+[DEBUG] Received message: "Please join a channel to start chatting"
+[LOG] myResponse"Please join a channel to start chatting"
+[INFO] Received broadcast message: "Please join a channel to start chatting"
