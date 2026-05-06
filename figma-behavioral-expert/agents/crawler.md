@@ -19,6 +19,9 @@ FUNÇÃO discover_screens(node_id):
     node_info = get_node_info(node_id)  # Obtém filhos diretos
     
     PARA CADA child EM node_info.children:
+        SE child.visible == false:
+            CONTINUAR (IGNORAR ESTE NÓ COMPLETAMENTE)
+
         SE child.type == "SECTION":
             # SECTION não é tela, é container. Entrar recursivamente.
             REGISTRAR: "📁 Seção encontrada: [child.id] child.name"
@@ -42,7 +45,8 @@ FUNÇÃO discover_screens(node_id):
 2. **NUNCA parar** na primeira SECTION. Pode haver SECTIONS irmãs.
 3. **NUNCA confiar em nomes** para decidir se algo é tela ou não.
 4. **NUNCA confiar em dimensões** (width/height) para filtrar telas.
-5. **Registrar o progresso** em cada etapa — isso permite ao Master Agent auditar o crawler.
+5. **IGNORAR NÓS OCULTOS**: Sempre verifique a propriedade `visible` (ou `child.get('visible')` em scripts). Se for `false`, pule o nó e todos os seus filhos.
+6. **Registrar o progresso** em cada etapa — isso permite ao Master Agent auditar o crawler.
 
 ## ⚠️ Anti-Patterns (O QUE NÃO FAZER)
 

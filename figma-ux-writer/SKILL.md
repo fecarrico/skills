@@ -34,13 +34,13 @@ Siga o protocolo definido em `agents/crawler.md` **ao pé da letra**.
 
 #### Passo 1.1: Mapear seções do nó raiz
 - Chame `get_node_info(root_id)` para obter os filhos diretos.
-- Para cada filho:
+- Para cada filho (ignorar se `visible == false`):
   - Se `type == "SECTION"` → registrar e entrar (Passo 1.2)
   - Se `type in ("FRAME", "COMPONENT", "INSTANCE")` → registrar como TELA
 
 #### Passo 1.2: Recursão em cada SECTION
 - Chame `get_node_info(section_id)` para obter os filhos diretos da seção.
-- Para cada filho:
+- Para cada filho (ignorar se `visible == false`):
   - Se `type == "SECTION"` → registrar e entrar recursivamente (repetir 1.2)
   - Se `type in ("FRAME", "COMPONENT", "INSTANCE")` → registrar como TELA
 - **NUNCA parar na primeira seção**. Processar TODOS os filhos de cada nível.
