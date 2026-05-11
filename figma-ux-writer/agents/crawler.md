@@ -25,6 +25,12 @@ FUNÇÃO discover_screens(node_id):
             discover_screens(child.id)  # ← RECURSÃO OBRIGATÓRIA
             
         SE child.type EM ("FRAME", "COMPONENT", "INSTANCE"):
+            # Heurística de Tamanho: Ignorar componentes pequenos (ícones, botões soltos) 
+            # que não sejam Telas ou Diálogos.
+            SE child.absoluteBoundingBox.height < 100:
+                SE NÃO (child.name CONTÉM "Toast" OU child.name CONTÉM "Dialog" OU child.name CONTÉM "Modal"):
+                    CONTINUAR (IGNORAR RUÍDO)
+
             # Este é uma TELA. Registrar para auditoria.
             REGISTRAR: "📱 Tela encontrada: [child.id] child.name (child.type)"
             ADICIONAR child.id à fila_de_auditoria
@@ -34,8 +40,8 @@ FUNÇÃO discover_screens(node_id):
 
 1. **SEMPRE chamar `get_node_info`** em cada SECTION encontrada, sem exceção.
 2. **NUNCA parar** na primeira SECTION. Pode haver SECTIONS irmãs.
-3. **NUNCA confiar em nomes** para decidir se algo é tela ou não.
-4. **NUNCA confiar em dimensões** (width/height) para filtrar telas.
+3. **NUNCA confiar APENAS em nomes** para decidir se algo é tela ou não.
+4. **FILTRO DE DIMENSÃO**: Ignorar frames com `height < 100px` para evitar ruído de componentes, EXCETO se o nome indicar um padrão de interface crítico (Toast, Dialog, Modal).
 5. **Registrar o progresso** em cada etapa — isso permite ao Master Agent auditar o crawler.
 
 ## 📤 Formato de Saída

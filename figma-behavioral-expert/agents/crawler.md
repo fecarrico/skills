@@ -27,6 +27,13 @@ FUNÇÃO discover_screens(node_id):
             REGISTRAR: "📁 Seção encontrada: [child.id] child.name"
             discover_screens(child.id)  # ← RECURSÃO OBRIGATÓRIA
             
+        SE child.type EM ("FRAME", "COMPONENT", "INSTANCE"):
+            # Heurística de Tamanho: Ignorar componentes pequenos (ícones, botões soltos) 
+            # que não sejam Telas ou Diálogos.
+            SE child.absoluteBoundingBox.height < 100:
+                SE NÃO (child.name CONTÉM "Toast" OU child.name CONTÉM "Dialog" OU child.name CONTÉM "Modal"):
+                    CONTINUAR (IGNORAR RUÍDO)
+
             # Este é uma TELA. Registrar para auditoria de heurísticas.
             REGISTRAR: "📱 Tela encontrada: [child.id] child.name (child.type)"
             ADICIONAR child.id à fila_de_auditoria
@@ -35,7 +42,6 @@ FUNÇÃO discover_screens(node_id):
             # 1. Chamar mcp_TalkToFigma_export_node_as_image(nodeId=child.id, format="PNG", scale=2)
             # 2. Sanitizar ID: Substituir ":" por "-" (Ex: "1:3409" -> "1-3409")
             # 3. Salvar: Executar `python3 scripts/save_image.py "[RETORNO_BASE64]" "reports/assets/[id-sanitizado].png"`
-            #    (⚠️ Importante: Envolva o Base64 em aspas para evitar erros de shell)
             REGISTRAR: "💾 Arquivo salvo fisicamente em: reports/assets/[id-sanitizado].png"
 ```
 
@@ -43,8 +49,8 @@ FUNÇÃO discover_screens(node_id):
 
 1. **SEMPRE chamar `get_node_info`** em cada SECTION encontrada, sem exceção.
 2. **NUNCA parar** na primeira SECTION. Pode haver SECTIONS irmãs.
-3. **NUNCA confiar em nomes** para decidir se algo é tela ou não.
-4. **NUNCA confiar em dimensões** (width/height) para filtrar telas.
+3. **NUNCA confiar APENAS em nomes** para decidir se algo é tela ou não.
+4. **FILTRO DE DIMENSÃO**: Ignorar frames com `height < 100px` para evitar ruído de componentes, EXCETO se o nome indicar um padrão de interface crítico (Toast, Dialog, Modal).
 5. **IGNORAR NÓS OCULTOS**: Sempre verifique a propriedade `visible` (ou `child.get('visible')` em scripts). Se for `false`, pule o nó e todos os seus filhos.
 6. **Registrar o progresso** em cada etapa — isso permite ao Master Agent auditar o crawler.
 

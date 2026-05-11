@@ -22,16 +22,22 @@ Siga o protocolo em `agents/environment.md` para estabelecer o handshake com o F
 2. Qual o principal objetivo (Job-to-be-done) desta jornada?
 3. Existe alguma dor ou métrica de negócio específica que devemos observar?
 
-### FASE 1: Mapeamento e Análise Visual (Crawler)
-Siga o protocolo em `agents/crawler.md`:
-1. Mapeie todas as telas da jornada.
-2. Realize a **Captura Visual** usando `export_node_as_image` e salve como arquivo físico (PNG) para compor o relatório estratégico final.
+### FASE 1: Navegação Exaustiva (Mandatory Recursive Discovery)
+> **REGRA DE OURO**: NUNCA pule esta fase. NUNCA assuma que conhece a estrutura do documento.
 
-### FASE 2: Auditoria Técnica (Auditor)
-Invoque o especialista em `agents/auditor.md`:
-1. Identifique violações usando o `references/heuristics_guide.md`.
-2. Aplique **uma anotação consolidada** por tela no Figma (`🤖 [BEHAVIORAL-EXPERT]`).
-3. Compile uma "Ficha Técnica de Achados" para cada tela.
+Siga o protocolo em `agents/crawler.md`:
+1.  **Mapeamento Recursivo**: Entre em todas as SECTIONS e mapeie todos os FRAMES/COMPONENTS.
+2.  **Gerar Checklist de Auditoria**: Ao final da FASE 1, salve um arquivo `/tmp/audit_checklist.md` com TODAS as telas descobertas. Este arquivo é a **fonte de verdade** para a FASE 2.
+3.  **Captura Visual**: Realize a **Captura Visual** usando `export_node_as_image` e salve como PNG para compor o relatório.
+
+### FASE 2: Auditoria Técnica (Auditor Loop)
+> **REGRA INVIOLÁVEL**: A FASE 2 é um loop que processa CADA LINHA do checklist em `/tmp/audit_checklist.md`, sem exceção.
+
+1.  **Loop por Tela**: Para cada tela no checklist:
+    - Identifique violações usando o `references/heuristics_guide.md`.
+    - Aplique **uma anotação consolidada** por tela no Figma (`🤖 [BEHAVIORAL-EXPERT]`).
+    - Atualize o checklist marcando como concluída.
+2.  **Gate de Completude**: Antes de avançar, verifique se todas as telas do checklist foram processadas.
 
 ### FASE 3: Síntese Estratégica (Reporter)
 Invoque o estrategista em `agents/reporter.md`:
