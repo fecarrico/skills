@@ -48,15 +48,19 @@ Siga o protocolo definido em `agents/crawler.md` **ao pé da letra**.
 #### Passo 1.3: Gerar Checklist de Auditoria
 Ao final da FASE 1, salvar um arquivo `/tmp/audit_checklist.md` com TODAS as telas descobertas no formato abaixo. Este arquivo é a **fonte de verdade** para a FASE 2.
 
+**Filtro Inteligente de Notas**: Durante a geração, avalie dimensões e nome. SE `height < 400` OU nome contiver "Frame", "Nota", "Doc", "WIP" ou iniciar com "_":
+- Marque com `- [?]` (em vez de `- [ ]`)
+- Adicione a tag `(⚠️ Suspeito de ser nota/solto - Sugestão: Ignorar)`
+
 ```markdown
 # Checklist de Auditoria
 
 ## Seção: "Nome da Seção" (ID)
-- [ ] 📱 [ID] "Nome da Tela" (TYPE)
-- [ ] 📱 [ID] "Nome da Tela" (TYPE)
+- [ ] 📱 [ID] "Nome da Tela" (TYPE) [W: 375 x H: 812]
+- [?] 📱 [ID] "Frame 123" (FRAME) [W: 300 x H: 150] (⚠️ Suspeito de ser nota/solto - Sugestão: Ignorar)
 
 ### Sub-seção: "Nome" (ID)
-- [ ] 📱 [ID] "Nome da Tela" (TYPE)
+- [ ] 📱 [ID] "Nome da Tela" (TYPE) [W: 320 x H: 800]
 
 ---
 Total: X telas | Auditadas: 0 | Pendentes: X

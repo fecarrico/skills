@@ -27,9 +27,9 @@ FUNÇÃO discover_screens(node_id):
             REGISTRAR: "📁 Seção encontrada: [child.id] child.name"
             discover_screens(child.id)  # ← RECURSÃO OBRIGATÓRIA
             
-            # Este é uma TELA. Registrar para auditoria de heurísticas.
-            REGISTRAR: "📱 Tela encontrada: [child.id] child.name (child.type)"
-            ADICIONAR child.id à fila_de_auditoria
+            # Este é uma TELA. Obter dimensões (ex: child.absoluteBoundingBox)
+            REGISTRAR: "📱 Tela encontrada: [child.id] child.name (child.type) [W: child.width x H: child.height]"
+            ADICIONAR child à fila_de_auditoria
             
             # 📸 CAPTURA E SALVAMENTO (PNG)
             # 1. Chamar mcp_TalkToFigma_export_node_as_image(nodeId=child.id, format="PNG", scale=2)
@@ -39,12 +39,33 @@ FUNÇÃO discover_screens(node_id):
             REGISTRAR: "💾 Arquivo salvo fisicamente em: reports/assets/[id-sanitizado].png"
 ```
 
+### Passo Final do Mapeamento: Gerar Checklist (Checklist Gate)
+Ao final da descoberta, você DEVE salvar um arquivo `/tmp/behavioral_checklist.md` com TODAS as telas que foram inseridas na `fila_de_auditoria`.
+Durante a geração da lista, você DEVE avaliar as dimensões e o nome para sugerir a exclusão de "frames soltos" ou anotações:
+
+**Critério de Suspeita:** SE `height < 400` OU o nome contiver "Frame", "Nota", "Doc", "WIP", ou iniciar com "_":
+- Marque com `- [?]` (em vez de `- [ ]`)
+- Adicione a tag `(⚠️ Suspeito de ser nota/solto - Sugestão: Ignorar)` no final da linha.
+
+```markdown
+# Checklist de Auditoria Behavioral
+
+## Seção: "Nome da Seção" (ID)
+- [ ] 📱 [ID] "Nome da Tela" (TYPE) [W: 375 x H: 812]
+- [?] 📱 [ID] "Frame 123" (FRAME) [W: 300 x H: 150] (⚠️ Suspeito de ser nota/solto - Sugestão: Ignorar)
+
+---
+Total: X telas | Auditadas: 0 | Pendentes: X
+```
+
+Apresente este checklist ao usuário e **PARE AQUI**. Somente avance para a captura de imagens ou análise (FASE 2) **APÓS a aprovação explícita do usuário**. A omissão deste passo caracteriza falha crítica do agente.
+
 ### Regras Invioláveis:
 
 1. **SEMPRE chamar `get_node_info`** em cada SECTION encontrada, sem exceção.
 2. **NUNCA parar** na primeira SECTION. Pode haver SECTIONS irmãs.
-3. **NUNCA confiar em nomes** para decidir se algo é tela ou não.
-4. **NUNCA confiar em dimensões** (width/height) para filtrar telas.
+3. **NUNCA confiar cegamente em nomes** para decidir se algo é tela ou não.
+4. **Filtro Inteligente, Não Oculto**: Você pode *sugerir* exclusões no checklist baseando-se em dimensões (ex: height < 400) e nomes, mas **NUNCA exclua a tela da lista silenciosamente**. Tudo deve ir para o checklist para o humano decidir.
 5. **IGNORAR NÓS OCULTOS**: Sempre verifique a propriedade `visible` (ou `child.get('visible')` em scripts). Se for `false`, pule o nó e todos os seus filhos.
 6. **Registrar o progresso** em cada etapa — isso permite ao Master Agent auditar o crawler.
 

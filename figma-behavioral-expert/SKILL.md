@@ -22,16 +22,20 @@ Siga o protocolo em `agents/environment.md` para estabelecer o handshake com o F
 2. Qual o principal objetivo (Job-to-be-done) desta jornada?
 3. Existe alguma dor ou métrica de negócio específica que devemos observar?
 
-### FASE 1: Mapeamento e Análise Visual (Crawler)
+### FASE 1: Mapeamento e Checklist de Auditoria (Crawler)
 Siga o protocolo em `agents/crawler.md`:
-1. Mapeie todas as telas da jornada.
-2. Realize a **Captura Visual** usando `export_node_as_image` e salve como arquivo físico (PNG) para compor o relatório estratégico final.
+1. Mapeie todas as telas da jornada exaustivamente.
+2. Gere um arquivo `/tmp/behavioral_checklist.md` com TODAS as telas descobertas no formato `- [ ] 📱 [ID] Nome (Tipo)`.
+3. Apresente o checklist ao usuário e **aguarde confirmação explícita** antes de avançar para a FASE 2.
+4. Após aprovação, realize a **Captura Visual** das telas listadas usando `export_node_as_image` e salve como arquivo físico (PNG).
 
-### FASE 2: Auditoria Técnica (Auditor)
+### FASE 2: Auditoria Técnica (Screen-by-Screen com Checklist)
 Invoque o especialista em `agents/auditor.md`:
-1. Identifique violações usando o `references/heuristics_guide.md`.
-2. Aplique **uma anotação consolidada** por tela no Figma (`🤖 [BEHAVIORAL-EXPERT]`).
-3. Compile uma "Ficha Técnica de Achados" para cada tela.
+1. Use o `/tmp/behavioral_checklist.md` como fonte de verdade obrigatória. Você DEVE analisar cada linha do checklist, sem pular telas.
+2. Identifique violações usando o `references/heuristics_guide.md`.
+3. Aplique **uma anotação consolidada** por tela no Figma (`🤖 [BEHAVIORAL-EXPERT]`).
+4. Marque a tela como `- [x]` no checklist.
+5. Compile uma "Ficha Técnica de Achados" para a tela auditada.
 
 ### FASE 3: Síntese Estratégica (Reporter)
 Invoque o estrategista em `agents/reporter.md`:

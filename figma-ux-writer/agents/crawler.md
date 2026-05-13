@@ -25,17 +25,17 @@ FUNÇÃO discover_screens(node_id):
             discover_screens(child.id)  # ← RECURSÃO OBRIGATÓRIA
             
         SE child.type EM ("FRAME", "COMPONENT", "INSTANCE"):
-            # Este é uma TELA. Registrar para auditoria.
-            REGISTRAR: "📱 Tela encontrada: [child.id] child.name (child.type)"
-            ADICIONAR child.id à fila_de_auditoria
+            # Este é uma TELA. Obter dimensões.
+            REGISTRAR: "📱 Tela encontrada: [child.id] child.name (child.type) [W: child.width x H: child.height]"
+            ADICIONAR child à fila_de_auditoria
 ```
 
 ### Regras Invioláveis:
 
 1. **SEMPRE chamar `get_node_info`** em cada SECTION encontrada, sem exceção.
 2. **NUNCA parar** na primeira SECTION. Pode haver SECTIONS irmãs.
-3. **NUNCA confiar em nomes** para decidir se algo é tela ou não.
-4. **NUNCA confiar em dimensões** (width/height) para filtrar telas.
+3. **NUNCA confiar cegamente em nomes** para decidir se algo é tela ou não.
+4. **Filtro Inteligente, Não Oculto**: Você pode *sugerir* exclusões baseando-se em dimensões (ex: height < 400) e nomes, mas **NUNCA exclua a tela da contagem silenciosamente**. Tudo deve ir para o inventário.
 5. **Registrar o progresso** em cada etapa — isso permite ao Master Agent auditar o crawler.
 
 ## 📤 Formato de Saída
@@ -45,12 +45,14 @@ Após completar `discover_screens(root_id)`, apresente:
 ```markdown
 ## Inventário de Telas
 
+(Gere a lista seguindo a regra de Filtro Inteligente definida em SKILL.md)
+
 ### [Seção: "Nome da Seção"]
-- 📱 [ID] "Nome da Tela" (TYPE)
-- 📱 [ID] "Nome da Tela" (TYPE)
+- 📱 [ID] "Nome da Tela" (TYPE) [W: 375 x H: 812]
+- 📱 [?] [ID] "Frame 123" (FRAME) [W: 300 x H: 150] (⚠️ Suspeito de ser nota/solto - Sugestão: Ignorar)
   
 #### [Sub-seção: "Nome da Sub-seção"]
-- 📱 [ID] "Nome da Tela" (TYPE)
+- 📱 [ID] "Nome da Tela" (TYPE) [W: 320 x H: 800]
 
 ### Total: X telas em Y seções
 ```
