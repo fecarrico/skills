@@ -27,7 +27,14 @@ FUNÇÃO discover_screens(node_id):
             REGISTRAR: "📁 Seção encontrada: [child.id] child.name"
             discover_screens(child.id)  # ← RECURSÃO OBRIGATÓRIA
             
-            # Este é uma TELA. Obter dimensões (ex: child.absoluteBoundingBox)
+        SE child.type EM ("FRAME", "COMPONENT", "INSTANCE"):
+            # Heurística de Tamanho: Ignorar componentes pequenos (ícones, botões soltos) 
+            # que não sejam Telas ou Diálogos.
+            SE child.absoluteBoundingBox.height < 100:
+                SE NÃO (child.name CONTÉM "Toast" OU child.name CONTÉM "Dialog" OU child.name CONTÉM "Modal"):
+                    CONTINUAR (IGNORAR RUÍDO)
+
+            # Este é uma TELA. Registrar para auditoria de heurísticas.
             REGISTRAR: "📱 Tela encontrada: [child.id] child.name (child.type) [W: child.width x H: child.height]"
             ADICIONAR child à fila_de_auditoria
             
@@ -35,7 +42,6 @@ FUNÇÃO discover_screens(node_id):
             # 1. Chamar mcp_TalkToFigma_export_node_as_image(nodeId=child.id, format="PNG", scale=2)
             # 2. Sanitizar ID: Substituir ":" por "-" (Ex: "1:3409" -> "1-3409")
             # 3. Salvar: Executar `python3 scripts/save_image.py "[RETORNO_BASE64]" "reports/assets/[id-sanitizado].png"`
-            #    (⚠️ Importante: Envolva o Base64 em aspas para evitar erros de shell)
             REGISTRAR: "💾 Arquivo salvo fisicamente em: reports/assets/[id-sanitizado].png"
 ```
 
@@ -64,10 +70,12 @@ Apresente este checklist ao usuário e **PARE AQUI**. Somente avance para a capt
 
 1. **SEMPRE chamar `get_node_info`** em cada SECTION encontrada, sem exceção.
 2. **NUNCA parar** na primeira SECTION. Pode haver SECTIONS irmãs.
-3. **NUNCA confiar cegamente em nomes** para decidir se algo é tela ou não.
-4. **Filtro Inteligente, Não Oculto**: Você pode *sugerir* exclusões no checklist baseando-se em dimensões (ex: height < 400) e nomes, mas **NUNCA exclua a tela da lista silenciosamente**. Tudo deve ir para o checklist para o humano decidir.
-5. **IGNORAR NÓS OCULTOS**: Sempre verifique a propriedade `visible` (ou `child.get('visible')` em scripts). Se for `false`, pule o nó e todos os seus filhos.
-6. **Registrar o progresso** em cada etapa — isso permite ao Master Agent auditar o crawler.
+3. **NUNCA confiar APENAS em nomes** para decidir se algo é tela ou não.
+4. **FILTRO INTELIGENTE E DIMENSÃO**: 
+   - Ignorar frames com `height < 100px` para evitar ruído de componentes, EXCETO se o nome indicar um padrão crítico.
+   - Para frames entre `100px` e `400px`, use o marcador `- [?]` no checklist para decisão humana. Nunca exclua silenciosamente.
+5. **IGNORAR NÓS OCULTOS**: Sempre verifique a propriedade `visible`. Se for `false`, pule o nó e todos os seus filhos.
+6. **Registrar o progresso** em cada etapa.
 
 ## ⚠️ Anti-Patterns (O QUE NÃO FAZER)
 

@@ -26,6 +26,18 @@ Para garantir 100% de sucesso, siga rigorosamente esta sequência de estabiliza�
     - Solicite ao usuário: "Conectado ao WebSocket! Por favor, informe o **Channel ID** exibido no seu plugin para realizarmos o join."
     - Execute `mcp_TalkToFigma_join_channel`.
 
+### FASE 0.5: Alinhamento de Contexto (Strategic Mapping)
+
+> **OBRIGATÓRIO**: Esta fase garante que a auditoria não seja genérica, mas focada na necessidade real do usuário e do negócio.
+
+1.  **Questionário Contextual**: Antes de iniciar a descoberta de telas, você deve obrigatoriamente fazer as seguintes perguntas ao usuário:
+    - **Perfil/Persona**: "Quem é o usuário desta jornada?" (Apresente as opções encontradas em `references/personas/` ou peça uma descrição customizada).
+    - **Objetivo (Task Completion)**: "O que essa pessoa quer fazer exatamente?"
+    - **Momento Emocional**: "Como o usuário se sente? (Ex: Com pressa, frustrado, calmo?)"
+    - **Risco de Confusão**: "Qual o maior risco se o texto não for claro aqui?"
+    - **Contexto Físico**: "Onde ele está e em qual dispositivo? (Ex: Mobile no trânsito, Desktop no escritório?)"
+2.  **Consolidação**: Com as respostas, resuma o "Mindset da Auditoria" e peça confirmação para avançar para a FASE 1.
+
 ### FASE 1: Navegação Exaustiva (Mandatory Recursive Discovery)
 
 > **REGRA DE OURO**: NUNCA pule esta fase. NUNCA assuma que conhece a estrutura do documento.
@@ -79,8 +91,8 @@ PARA CADA linha "- [ ]" no checklist:
     1. Extrair o ID da tela
     2. Chamar scan_text_nodes(screen_id)
     3. Se timeout → registrar como "⏳ TIMEOUT" no checklist (não pular)
-    4. Analisar textos contra references/ux_writing_manual.md
-    5. Criar anotações (set_annotation) com prefixo 🤖 [UX-WRITER]
+    4. Analisar textos contra `references/ux_writing_manual.md` **CRUZANDO com o contexto obtido na FASE 0.5** (Ex: se o momento é de alta pressão, priorize concisão extrema).
+    5. Criar anotações (`set_annotation`) com prefixo `🤖 [UX-WRITER]`.
     6. Marcar como "- [x]" no checklist
     7. Reportar progresso:
        ✅ [X/TOTAL] Tela [ID] "Nome" — Y anotações criadas

@@ -19,24 +19,35 @@ FUNÇÃO discover_screens(node_id):
     node_info = get_node_info(node_id)  # Obtém filhos diretos
     
     PARA CADA child EM node_info.children:
+        SE child.visible == false:
+            CONTINUAR (IGNORAR ESTE NÓ COMPLETAMENTE)
+
         SE child.type == "SECTION":
             # SECTION não é tela, é container. Entrar recursivamente.
             REGISTRAR: "📁 Seção encontrada: [child.id] child.name"
             discover_screens(child.id)  # ← RECURSÃO OBRIGATÓRIA
             
         SE child.type EM ("FRAME", "COMPONENT", "INSTANCE"):
-            # Este é uma TELA. Obter dimensões.
+            # Heurística de Tamanho: Ignorar componentes pequenos (ícones, botões soltos) 
+            # que não sejam Telas ou Diálogos.
+            SE child.absoluteBoundingBox.height < 100:
+                SE NÃO (child.name CONTÉM "Toast" OU child.name CONTÉM "Dialog" OU child.name CONTÉM "Modal"):
+                    CONTINUAR (IGNORAR RUÍDO)
+
+            # Este é uma TELA. Registrar para auditoria.
             REGISTRAR: "📱 Tela encontrada: [child.id] child.name (child.type) [W: child.width x H: child.height]"
-            ADICIONAR child à fila_de_auditoria
+            ADICIONAR child.id à fila_de_auditoria
 ```
 
 ### Regras Invioláveis:
 
 1. **SEMPRE chamar `get_node_info`** em cada SECTION encontrada, sem exceção.
 2. **NUNCA parar** na primeira SECTION. Pode haver SECTIONS irmãs.
-3. **NUNCA confiar cegamente em nomes** para decidir se algo é tela ou não.
-4. **Filtro Inteligente, Não Oculto**: Você pode *sugerir* exclusões baseando-se em dimensões (ex: height < 400) e nomes, mas **NUNCA exclua a tela da contagem silenciosamente**. Tudo deve ir para o inventário.
-5. **Registrar o progresso** em cada etapa — isso permite ao Master Agent auditar o crawler.
+3. **NUNCA confiar APENAS em nomes** para decidir se algo é tela ou não.
+4. **FILTRO DE DIMENSÃO**: 
+   - Ignorar frames com `height < 100px` para evitar ruído de componentes.
+   - Para frames entre `100px` e `400px`, use o marcador `[?]` no inventário sugerindo que pode ser uma nota.
+5. **Registrar o progresso** em cada etapa.
 
 ## 📤 Formato de Saída
 
@@ -44,8 +55,6 @@ Após completar `discover_screens(root_id)`, apresente:
 
 ```markdown
 ## Inventário de Telas
-
-(Gere a lista seguindo a regra de Filtro Inteligente definida em SKILL.md)
 
 ### [Seção: "Nome da Seção"]
 - 📱 [ID] "Nome da Tela" (TYPE) [W: 375 x H: 812]

@@ -21,12 +21,10 @@ Ou, se já tiver o repositório clonado:
 ./scripts/install-heuristics.sh
 ```
 
-
 ## 📋 Fluxo de Trabalho (The Agency Model)
 
 ### FASE 0: Estabilização e Login
 Siga o protocolo em `agents/environment.md` para estabelecer o handshake com o Figma.
-
 
 ### FASE 0.5: Imersão Contextual (Discovery)
 **OBRIGATÓRIO**: Antes de iniciar a auditoria, pergunte ao usuário:
@@ -34,20 +32,24 @@ Siga o protocolo em `agents/environment.md` para estabelecer o handshake com o F
 2. Qual o principal objetivo (Job-to-be-done) desta jornada?
 3. Existe alguma dor ou métrica de negócio específica que devemos observar?
 
-### FASE 1: Mapeamento e Checklist de Auditoria (Crawler)
-Siga o protocolo em `agents/crawler.md`:
-1. Mapeie todas as telas da jornada exaustivamente.
-2. Gere um arquivo `/tmp/behavioral_checklist.md` com TODAS as telas descobertas no formato `- [ ] 📱 [ID] Nome (Tipo)`.
-3. Apresente o checklist ao usuário e **aguarde confirmação explícita** antes de avançar para a FASE 2.
-4. Após aprovação, realize a **Captura Visual** das telas listadas usando `export_node_as_image` e salve como arquivo físico (PNG).
+### FASE 1: Navegação Exaustiva (Mandatory Recursive Discovery)
+> **REGRA DE OURO**: NUNCA pule esta fase. NUNCA assuma que conhece a estrutura do documento.
 
-### FASE 2: Auditoria Técnica (Screen-by-Screen com Checklist)
+Siga o protocolo em `agents/crawler.md`:
+1.  **Mapeamento Recursivo**: Entre em todas as SECTIONS e mapeie todos os FRAMES/COMPONENTS.
+2.  **Gerar Checklist de Auditoria**: Ao final da FASE 1, salve um arquivo `/tmp/behavioral_checklist.md` com TODAS as telas descobertas. Este arquivo é a **fonte de verdade** para a FASE 2.
+3.  **Gate de Aprovação**: Apresente o checklist ao usuário e **aguarde confirmação explícita** antes de avançar para a FASE 2.
+4.  **Captura Visual**: Após aprovação, realize a **Captura Visual** usando `export_node_as_image` e salve como PNG para compor o relatório.
+
+### FASE 2: Auditoria Técnica (Auditor Loop)
+> **REGRA INVIOLÁVEL**: A FASE 2 é um loop que processa CADA LINHA do checklist em `/tmp/behavioral_checklist.md`, sem exceção.
+
 Invoque o especialista em `agents/auditor.md`:
-1. Use o `/tmp/behavioral_checklist.md` como fonte de verdade obrigatória. Você DEVE analisar cada linha do checklist, sem pular telas.
-2. Identifique violações usando o `references/heuristics_guide.md`.
-3. Aplique **uma anotação consolidada** por tela no Figma (`🤖 [BEHAVIORAL-EXPERT]`).
-4. Marque a tela como `- [x]` no checklist.
-5. Compile uma "Ficha Técnica de Achados" para a tela auditada.
+1.  **Loop por Tela**: Para cada tela no checklist:
+    - Identifique violações usando o `references/heuristics_guide.md`.
+    - Aplique **uma anotação consolidada** por tela no Figma (`🤖 [BEHAVIORAL-EXPERT]`).
+    - Atualize o checklist marcando como concluída `- [x]`.
+2.  **Gate de Completude**: Antes de avançar, verifique se todas as telas do checklist foram processadas.
 
 ### FASE 3: Síntese Estratégica (Reporter)
 Invoque o estrategista em `agents/reporter.md`:
