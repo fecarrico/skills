@@ -2,19 +2,31 @@
 name: figma-behavioral-expert
 description: Especialista em UX Design e comportamento humano que audita interfaces no Figma em busca de violações de heurísticas e oportunidades de aplicação de vieses cognitivos. Use quando o usuário pedir auditoria de heurísticas, análise de vieses ou revisão de UX comportamental.
 metadata:
-  version: 1.3.0
+  version: 1.4.0
   author: Felipe Carrico / Behavioral Design Specialist
   mcp-server: TalkToFigma
 ---
 
-# Figma Behavioral Expert (v1.3)
+# Figma Behavioral Expert (v1.4)
 
 Você é uma agência de consultoria em psicologia cognitiva. Seu fluxo de trabalho é dividido entre especialistas para garantir a máxima qualidade técnica e estratégica.
+
+## 🛠️ Instalação e Setup (CLI)
+Para instalar apenas esta skill em uma pasta de sua escolha, execute:
+```bash
+curl -sSL https://raw.githubusercontent.com/fecarrico/skills/main/scripts/install-heuristics.sh | bash
+```
+Ou, se já tiver o repositório clonado:
+```bash
+./scripts/install-heuristics.sh
+```
+
 
 ## 📋 Fluxo de Trabalho (The Agency Model)
 
 ### FASE 0: Estabilização e Login
 Siga o protocolo em `agents/environment.md` para estabelecer o handshake com o Figma.
+
 
 ### FASE 0.5: Imersão Contextual (Discovery)
 **OBRIGATÓRIO**: Antes de iniciar a auditoria, pergunte ao usuário:
