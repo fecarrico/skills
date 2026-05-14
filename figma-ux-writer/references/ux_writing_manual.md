@@ -34,17 +34,78 @@ Para ser eficaz, precisa ser desenvolvido junto com a interface. Essa integraç�
 
 ---
 
-## Princípios de Escrita
+## 🎯 Objetivo
+
+Melhorar textos para que o usuário:
+- entenda rapidamente
+- saiba exatamente o que fazer
+- avance no fluxo sem esforço
+- tenha segurança durante a jornada
+- encontre consistência entre telas e componentes
+
+---
+
+## 🧠 Critérios de Decisão (ordem de prioridade)
+
+Use esta hierarquia ao avaliar qualquer texto de interface:
+
+1. **Clareza** → dá para entender na primeira leitura?
+2. **Ação** → o usuário sabe o que fazer?
+3. **Esforço cognitivo** → é rápido de escanear?
+4. **Consistência** → segue o padrão da interface?
+5. **Tom** → linguagem simples, humana e direta?
+6. **Segurança** → reduz dúvidas e aumenta confiança?
+
+---
+
+## 🗣️ Tom de Voz
+
+### Princípios gerais
+
+#### Simples, sem ser superficial
+Comunicação direta, acessível e descomplicada.
+
+#### Confiante, sem ser pretensioso
+Transmitir segurança e autoridade sem parecer arrogante.
+
+#### Próximo, sem ser invasivo
+Linguagem humana, leve e presente na rotina do usuário.
+
+#### Bem-humorado na medida certa
+Leveza sem comprometer clareza, objetividade ou orientação.
+
+### O que evitar
+
+- Formalidade excessiva
+- Linguagem corporativa
+- Linguagem técnica desnecessária
+- Frases robóticas
+- Textos genéricos
+- Termos rebuscados
+- Criatividade que prejudique clareza
+- Tom autoritário
+- Excesso de entusiasmo
+
+---
+
+## 🧩 Princípios Gerais de UX Writing
+
+- Clareza sempre vence criatividade
+- Priorizar orientação sobre estilo
+- Reduzir esforço cognitivo do usuário
+- Priorizar escaneabilidade
+- Evitar ambiguidades
+- Guiar o usuário naturalmente para o próximo passo
+- Eliminar excesso de palavras
+- Escrever como as pessoas falam
+- Manter consistência entre elementos da tela
+- Fazer a interface "conversar" de forma consistente
 
 ### Geometria de conteúdo
 A forma como o conteúdo é organizado importa:
 - **Simplicidade**: escreva como as pessoas falam e elimine excessos
 - **Consistência**: conexão entre o que foi dito e o que vem a seguir
 - **Hierarquia**: o mais importante primeiro, o mais complexo depois
-
-### Pilares
-- Utilidade e orientação
-- Usabilidade, semântica e arquitetura de informação
 
 ### Cognição, Consistência e Conversa
 - **Cognição**: frases curtas, palavras comuns, sentimentos
@@ -55,14 +116,19 @@ A forma como o conteúdo é organizado importa:
 
 ## Componentes de Interface
 
-### Header
+### 🧭 Header (Título de Seção)
 
-O header está orientando a navegação, não titulando um artigo. Ele responde silenciosamente: *Onde estou? Em que etapa estou? O que posso fazer aqui?*
+O header orienta navegação e contexto. Responde silenciosamente:
+- Onde estou?
+- O que posso fazer aqui?
+- Em que etapa estou?
 
-**Padrão recomendado:** Capitalização de sentença
-- Apenas a primeira palavra em maiúscula
+**Regras:**
+- Usar capitalização de sentença (apenas a primeira palavra em maiúscula)
 - Nomes próprios seguem a regra gramatical normal
 - Sem ponto final
+- Linguagem natural e escaneável
+- Deve orientar localização/contexto
 
 | ✅ Correto | ❌ Evitar |
 |---|---|
@@ -79,49 +145,64 @@ O header está orientando a navegação, não titulando um artigo. Ele responde 
 
 ---
 
-### Título Principal
+### 🎯 Título Principal (Instrução de Ação)
 
-O título não é editorial nem botão. Funciona como instrução contextual, respondendo: *O que faço aqui? O que o app espera de mim?*
+Não é título editorial nem botão. É uma instrução direta de ação. Responde: *O que faço aqui? O que o app espera de mim?*
 
-**Como escrever:**
-- Use verbo no imperativo: fala direto com o usuário, reduz esforço cognitivo
-- Use "seu/sua" para personalizar: soa menos autoritário
-- Mantenha objetivo claro
+**Regras:**
+- Usar verbo no imperativo
+- Usar "seu/sua" para personalizar — soa menos autoritário
+- Linguagem clara e direta
+- Guiar o próximo passo
+- Pode funcionar como micro-CTA
+- Evitar frases longas
+- Evitar ambiguidade
+- Evitar tom autoritário
 
 | ✅ Correto | ❌ Evitar |
 |---|---|
 | Cadastre seu cartão para continuar | Cadastre o cartão para prosseguir |
 | Escolha sua forma de pagamento | Escolha a forma de pagamento |
+| Confirme seus dados | Revise as informações |
 
 ---
 
-### Subtítulo
+### 📝 Subtítulo
 
-O subtítulo não é decorativo: é funcional. Responde: *O que acontece se eu fizer isso?*
+Não é decorativo: é funcional. Responde: *O que acontece se eu fizer isso?*
 
 **Função principal:**
 - Explicar o que vai acontecer
-- Antecipar o resultado
+- Antecipar o resultado da ação
 - Reduzir dúvidas e trazer contexto
 - Reforçar segurança
 
-**Como escrever:** Claro, curto, complementar (não repetitivo em relação ao título)
+**Regras:**
+- Curto e direto
+- Não repetir o título
+- Não ser explicativo demais
 
-| ✅ Correto | ❌ Evitar |
-|---|---|
-| Título: "Pague agora" + Subtítulo: "Escolha como pagar e finalize em segundos" | Título: "Pague agora" + Subtítulo: "Faça o pagamento agora" |
+**Exemplo:**
+- Título: `Pague agora`
+- Subtítulo: `Escolha como pagar e finalize em segundos`
 
 **O que evitar:** Repetição, texto longo, informação irrelevante, linguagem técnica, misturar mensagens.
 
 ---
 
-### CTA (Call to Action)
+### 🔘 CTA (Botão / Call to Action)
 
-O CTA é a tradução da próxima ação. Responde: *O que acontece se eu clicar? Vale a pena clicar?*
+Traduz a próxima ação do usuário. Responde: *O que acontece se eu clicar? Vale a pena clicar?*
 
 **Tamanho ideal:** 1 a 3 palavras (máximo 4 se necessário)
 
-**Estrutura:** Verbo + ação clara (preferencialmente no infinitivo)
+**Regras:**
+- Sempre começar com verbo no imperativo
+- Ser claro, não criativo
+- Evitar frases completas
+- Evitar termos genéricos como "OK"
+- Repetir a ação do contexto
+- Refletir exatamente a ação descrita anteriormente
 
 | ✅ Usar | ❌ Evitar |
 |---|---|
@@ -133,72 +214,14 @@ O CTA é a tradução da próxima ação. Responde: *O que acontece se eu clicar
 | Agora não | Cancelar (ambíguo) |
 | Excluir | Remover (quando for ação crítica) |
 
-**Regra essencial:** O CTA deve repetir a ação do contexto.
-
-Exemplo de consistência:
+**Regra de consistência:**
 - Header: "Formas de pagamento"
-- Texto: "Cadastre seu cartão para continuar"
+- Instrução: "Cadastre seu cartão para continuar"
 - CTA: "Cadastrar cartão"
 
 ---
 
-### Mensagens de Erro
-
-#### Erro genérico/sistêmico
-Falha interna do sistema — não depende do usuário, pode ocorrer em várias telas.
-
-Exemplos:
-- "Algo deu errado! Por favor, tente novamente"
-- "Algo deu errado! Por favor, tente mais tarde"
-
-#### Erro específico
-O sistema sabe o que deu errado — ligado a uma ação do usuário, identificável e resolvível.
-
-**Estrutura ideal:**
-1. O que aconteceu
-2. Onde aconteceu
-3. Como resolver
-
-Exemplo: "Não foi possível concluir o pagamento. Verifique os dados e tente novamente."
-
-#### Erros em campos
-- Devem ser curtos
-- Focar no erro, não na explicação
-- Estrutura: campo + problema + ação
-
-Exemplo: "CPF inválido. Revise os números e tente novamente."
-
-**Boas práticas gerais:**
-- Não culpar o usuário ou a empresa
-- Evitar linguagem técnica
-- Sempre oferecer saída (botão de ação)
-
----
-
-### Snackbars
-
-Feedback rápido após uma ação — temporários, não interrompem o fluxo, mensagem curta.
-
-**Boas práticas:**
-- Linguagem neutra
-- Apenas informação essencial
-- **Usar ponto final**
-- Sem exclamação ou exagero emocional
-
-| ✅ Correto | ❌ Evitar |
-|---|---|
-| O cartão foi cancelado. | O cartão foi cancelado com sucesso! |
-| Salvo com sucesso. | Ótimo! Arquivo salvo! |
-
----
-
-### Alertas
-
-Mensagens para situações críticas — chamam atenção, podem interromper o fluxo e indicam ação necessária.
-
----
-
-### Botões (detalhes por intenção)
+### Botões por Intenção
 
 | Intenção | ✅ Usar | ❌ Evitar |
 |---|---|---|
@@ -209,20 +232,84 @@ Mensagens para situações críticas — chamam atenção, podem interromper o f
 | Cancelar / sair | Agora não | Cancelar (ambíguo) |
 | Ação destrutiva | Excluir | Remover (quando crítico) |
 
-**Boas práticas:**
-- Evitar termos genéricos como "OK"
-- O texto do botão deve antecipar o que acontece depois do clique
-- Manter consistência ao longo do fluxo
+---
+
+### ⚠️ Mensagens de Erro
+
+**Princípios gerais:**
+- Nunca culpar o usuário
+- Nunca usar linguagem técnica
+- Ser claro e acionável
+- Explicar o problema sem gerar insegurança
+- Sempre oferecer saída (botão de ação)
+
+#### 1. Erro genérico/sistêmico
+Quando a causa não é identificada — não depende do usuário.
+
+**Regras:**
+- Linguagem simples, sem detalhes técnicos
+- Pode usar "!" apenas na primeira frase como alerta
+
+| ✅ Correto |
+|---|
+| Algo deu errado! Tente novamente. |
+| Algo deu errado! Tente mais tarde. |
+
+#### 2. Erro específico
+Quando o sistema identifica a causa — ligado a uma ação do usuário, identificável e resolvível.
+
+**Estrutura:** Problema + localização + ação
+
+| ✅ Correto |
+|---|
+| CPF inválido. Revise os números. |
+| O código expirou. Gere um novo código. |
+| Não foi possível concluir o pagamento. Verifique os dados e tente novamente. |
+
+#### 3. Erros em campos (Input)
+- Curtos, focados no erro
+- Estrutura: campo + problema + ação
+
+**Exemplo:** `CPF inválido. Revise os números e tente novamente.`
 
 ---
 
-### Campos de Formulário (Input)
+### ✅ Snackbar
+
+Feedback rápido do sistema após uma ação — temporário, não interrompe o fluxo.
+
+**Regras:**
+- Mensagem curta e neutra
+- Sem tom de alerta ou entusiasmo excessivo
+- Deve desaparecer automaticamente
+- **Usar ponto final**
+
+| ✅ Correto | ❌ Evitar |
+|---|---|
+| O cartão foi cancelado. | O cartão foi cancelado com sucesso! |
+| Salvo com sucesso. | Ótimo! Arquivo salvo! |
+
+---
+
+### 🚨 Alertas
+
+Mensagens para situações críticas — chamam atenção, podem interromper o fluxo e indicam ação necessária.
+
+**Regras:**
+- Tom neutro e confiável
+- Objetividade
+- Pode interromper o fluxo
+- Pode indicar ação necessária
+
+---
+
+### 🧾 Campos de Formulário (Input)
 
 Elementos de conteúdo em um campo:
-- **Label**: nome claro e direto (ex: "CPF", "Data de nascimento")
-- **Placeholder**: exemplo de preenchimento, não substitui o label (ex: "000.000.000-00")
-- **Mensagem de erro**: campo + problema + ação (ex: "CPF inválido. Revise os números e tente novamente.")
-- **Helper text**: explica quando necessário, antecipa dúvida (ex: "Use o mesmo CPF do titular da conta")
+- **Label**: nome claro e direto — nunca substituir pelo placeholder (ex: `CPF`, `Data de nascimento`)
+- **Placeholder**: exemplo de preenchimento — não substitui o label (ex: `000.000.000-00`)
+- **Mensagem de erro**: campo + problema + ação (ex: `CPF inválido. Revise os números.`)
+- **Helper text**: explica quando necessário, antecipa dúvida (ex: `Use o mesmo CPF do titular da conta`)
 
 **Boas práticas:**
 - Evitar repetir informação entre label e placeholder
@@ -230,13 +317,25 @@ Elementos de conteúdo em um campo:
 
 ---
 
-## Repetição de Termos
+### 🧭 Breadcrumb (Caminho de Pão)
+
+Mostra hierarquia e localização do usuário.
+
+**Regras:**
+- Usar `>` para hierarquia
+- Destacar menus em negrito
+
+**Exemplo:** **Início** > **Pagamentos** > Histórico
+
+---
+
+## 🔁 Repetição de Termos
 
 A repetição intencional é baseada em psicologia cognitiva (Lei de Miller, Chunking, Gestalt).
 
-**Quando repetir** — entre header e instrução:
+**Quando repetir** — entre header e instrução (reforça contexto, reduz carga cognitiva):
 - Header: "Voucher de abastecimento"
-- Texto: "Defina o valor do seu voucher de abastecimento"
+- Instrução: "Defina o valor do seu voucher de abastecimento"
 
 **Quando evitar** — na mesma frase ou entre título e subtítulo:
 
@@ -244,9 +343,30 @@ A repetição intencional é baseada em psicologia cognitiva (Lei de Miller, Chu
 |---|---|
 | Título: "Digite a senha do cartão" + Subtítulo: "Aqui você informa a senha do seu cartão" | Título: "Digite a senha do cartão" + Subtítulo: "Você tem 3 tentativas disponíveis" |
 
+**Benefícios da repetição intencional:**
+- Reduz carga cognitiva
+- Evita interpretação errada
+- Melhora escaneabilidade
+- Aumenta consistência da jornada
+
 ---
 
-## Termos Preferenciais do Produto
+## 🚫 Termos a Evitar
+
+| Evitar | Preferir |
+|---|---|
+| Realizar | Fazer |
+| Solicitar | Pedir |
+| Efetuar | Pagar / Fazer |
+| Adquirir | Comprar |
+| Encaminhar | Enviar |
+| Cliente / Usuário | Você |
+| Ocorreu um erro inesperado | Algo deu errado |
+| Processando solicitação | Estamos cuidando disso |
+
+---
+
+## 🏷️ Termos Preferenciais do Produto (Sem Parar)
 
 | ✅ Usar | ❌ Evitar |
 |---|---|
@@ -254,15 +374,34 @@ A repetição intencional é baseada em psicologia cognitiva (Lei de Miller, Chu
 | tag | adesivo, transponder |
 | carro | veículo, automóvel |
 
+> **Branding obrigatório**: "Sem Parar" — sempre com S e P maiúsculos.
+
 ---
 
-## Convenções de Escrita
+## 📅 Datas, Horários e Capitalização
 
-- **Datas**: abril (minúsculo, sem abreviação)
-- **Horários**: 14h30 (sem espaço, sem "horas")
-- **Números**: escrever por extenso até 9 (um, dois... nove), numeral a partir de 10
-- **Pronomes**: "você", "seu/sua" — nunca tutear nem usar "vós"
-- **Ponto final**: usar em snackbars e descrições; não usar em headers e CTAs
+### Meses e dias da semana
+Usar minúsculo:
+- janeiro, fevereiro, março...
+- segunda, terça, quarta...
+
+### Feriados e datas comemorativas
+Usar inicial maiúscula:
+- Natal, Carnaval, Ano-Novo
+
+### Horários
+- Usar `14h30` (sem espaço, sem "horas")
+
+### Números
+- Escrever por extenso até 9: um, dois... nove
+- Numeral a partir de 10: 10, 11, 12...
+
+### Pronomes
+- Usar "você", "seu/sua" — nunca tutear nem usar "vós"
+
+### Ponto final
+- **Usar em**: snackbars e descrições
+- **Não usar em**: headers e CTAs
 
 ---
 
@@ -333,3 +472,17 @@ Padronizar tempo verbal, nível de clareza, e quando detalhar ou não:
 - Solicitação de permissão (notificação, localização)
 - Explicação de por que pedir
 - Estado negado (o que fazer)
+
+---
+
+## 📌 Princípios Finais
+
+Sempre garantir que:
+- O texto seja fácil de escanear
+- A linguagem pareça humana
+- O usuário entenda imediatamente o próximo passo
+- Não exista ruído, excesso ou ambiguidade
+- A interface mantenha consistência textual
+- Cada componente tenha função clara dentro da jornada
+- O usuário se sinta orientado, nunca perdido
+- Clareza e ação sejam sempre prioridade sobre estilo ou criatividade
