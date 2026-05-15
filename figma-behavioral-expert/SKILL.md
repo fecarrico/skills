@@ -32,9 +32,10 @@ Siga o protocolo em `agents/environment.md`. Esta fase garante que o Bun, o MCP 
 > **REGRA DE OURO**: Respeite o alvo do usuário. Se ele enviou um Frame, audite APENAS esse frame.
 
 Siga o protocolo em `agents/crawler.md`:
-1.  **Detecção de Escopo**: Identifique se o alvo é uma Tela Única, uma Seção (Container) ou a Página Inteira.
-2.  **Mapeamento Controlado**: Mapeie apenas o que está dentro do escopo detectado.
-3.  **Checklist Gate**: Gere o `/tmp/behavioral_checklist.md` e **aguarde confirmação explícita** do usuário antes de processar as telas.
+1.  **Resolução do Alvo**: Se o usuário enviou uma URL do Figma, extraia o `node-id` da URL (convertendo `-` para `:`). Se não, use a seleção atual ou pergunte.
+2.  **Detecção de Escopo**: Identifique se o alvo é uma Tela Única (FRAME), uma Seção (SECTION) ou a Página Inteira (PAGE/CANVAS/DOCUMENT).
+3.  **Mapeamento Exaustivo**: Use `scan_nodes_by_types` para busca profunda dentro do escopo detectado.
+4.  **Checklist Gate**: Gere o `/tmp/behavioral_checklist.md` e **aguarde confirmação explícita** do usuário antes de processar as telas.
 
 ### FASE 2: Auditoria Técnica (Auditor Loop)
 Invoque o especialista em `agents/auditor.md`:

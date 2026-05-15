@@ -26,9 +26,10 @@ Siga o protocolo em `agents/environment.md`. Esta fase cobre Bun, MCP e canal We
 > **REGRA DE OURO**: Respeite a intenção do usuário. Se um Frame foi fornecido, não saia dele para olhar a seção ou página.
 
 Siga o protocolo em `agents/crawler.md`:
-1.  **Detecção de Escopo**: Avalie se o nó inicial é uma Tela Única, uma Seção ou a Página.
-2.  **Inventário Controlado**: Mapeie os itens apenas dentro do limite detectado.
-3.  **Checklist Gate**: Salve o `/tmp/audit_checklist.md` e **aguarde confirmação** do usuário antes de auditar.
+1.  **Resolução do Alvo**: Se o usuário enviou uma URL do Figma, extraia o `node-id` da URL (convertendo `-` para `:`). Se não, use a seleção atual ou pergunte.
+2.  **Detecção de Escopo**: Avalie se o nó inicial é uma Tela Única (FRAME), uma Seção (SECTION) ou a Página (PAGE/CANVAS/DOCUMENT).
+3.  **Inventário Exaustivo**: Use `scan_nodes_by_types` para busca profunda dentro do limite detectado.
+4.  **Checklist Gate**: Salve o `/tmp/audit_checklist.md` e **aguarde confirmação** do usuário antes de auditar.
 
 ### FASE 2: Auditoria Semântica (Screen-by-Screen)
 Siga o protocolo em `agents/auditor.md`:
