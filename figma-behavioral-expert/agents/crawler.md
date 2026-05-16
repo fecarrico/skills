@@ -150,19 +150,17 @@ FUNÇÃO discover_screens_fallback(node_id):
 
 ## 📤 Formato de Saída (Checklist Gate)
 
+> **⚠️ PROTOCOLO ANTI-RESUMO (STRICT)**:
+> - É terminantemente proibido agrupar variações (ex: "Home (V1 a V10)") em uma única linha.
+> - Cada ID único deve ter sua própria linha no arquivo de checklist.
+> - Não utilize "Etc" ou "..." em tabelas de inventário.
+> - O mapeamento deve ser exaustivo: 1 tela no Figma = 1 linha no checklist.
+
 Apresente o checklist e **PARE para aguardar confirmação**. Destaque o escopo detectado.
-
-```markdown
-## 🔍 Escopo Detectado: [Restrito / Container / Global]
-**Alvo**: "[Nome do nó raiz]" (TIPO — ID: root_id)
-
-### Telas Encontradas: N
 
 | # | ID | Nome da Tela | Tipo | Dimensões (W × H) | Seção Pai |
 |---|---|---|---|---|---|
 | 1 | [node_id] | "Nome" | FRAME | 375 × 812 | "Seção X" |
-| 2 | ... | ... | ... | ... | ... |
-```
 
 Salve este checklist em `/tmp/behavioral_checklist.md`.
 
@@ -174,12 +172,12 @@ Salve este checklist em `/tmp/behavioral_checklist.md`.
 
 | ❌ Errado | ✅ Correto |
 |---|---|
+| Resumir ou agrupar variações de telas | Listar 100% dos IDs individualmente |
 | Assumir que o `root_id` já está resolvido | Sempre verificar URL → seleção → documento |
 | Sair do frame selecionado para olhar a seção pai | Ficar estritamente dentro do nó fornecido |
 | Ignorar a intenção do usuário em prol de "ser exaustivo" | Ser exaustivo APENAS dentro do limite do escopo |
-| Assumir que o usuário quer auditar a página toda | Validar se o alvo é uma tela única ou um container |
 | Usar apenas `get_node_info` para busca recursiva | Preferir `scan_nodes_by_types` para busca profunda |
 | Parar no primeiro nível de Frames dentro de uma Section | Verificar se Frames contêm sub-Frames (containers) |
 
 ---
-**Regra de Ouro**: Se o usuário te deu um Frame ID, sua jornada começa e termina naquele ID. Se te deu uma Section, mapeie TUDO dentro dela. Se te deu uma Page, mapeie a página inteira.
+**Regra de Ouro**: A inteligência artificial tende a ser eficiente (resumindo), mas sua missão aqui é ser exaustiva. Se existem 41 telas, o checklist deve ter 41 linhas.
