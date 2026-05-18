@@ -33,6 +33,40 @@ https://www.figma.com/proto/<FILE_KEY>/...?node-id=<NODE_ID>&...
 
 ---
 
+## 🛡️ GATE DE VALIDAÇÃO DO ALVO
+
+Após resolver o `root_id` pelo Cenário A ou B acima, **antes de iniciar qualquer scan**, execute:
+
+```
+root_info = mcp_TalkToFigma_get_node_info(nodeId: root_id)
+```
+
+**Se a chamada falhar** → BLOQUEIO TOTAL:
+> ❌ O nó `{root_id}` não foi encontrado. Causas possíveis: arquivo errado aberto no Figma, nó deletado/movido, canal conectado a arquivo diferente. **Não prossiga.**
+
+**Se retornar com sucesso**, apresente o **Cartão de Alvo** e aguarde confirmação:
+
+```
+╔══════════════════════════════════════════════════╗
+║           🎯 CONFIRMAÇÃO DE ALVO — UX WRITER       ║
+╠══════════════════════════════════════════════════╣
+║  Documento  : {document_name}                    ║
+║  Página     : {page_name}                        ║
+║  Nó Raiz   : "{node_name}"                       ║
+║  ID         : {root_id}                          ║
+║  Tipo       : {node_type}                        ║
+║  Dimensões  : {width} × {height} px              ║
+╚══════════════════════════════════════════════════╝
+
+→ Responda "sim" para confirmar ou corrija o alvo.
+```
+
+**PARE. Não inicie `scan_nodes_by_types` sem o "sim" explícito do usuário.**
+
+Após a confirmação, execute `mcp_TalkToFigma_set_focus(nodeId: root_id)` para dar feedback visual no Figma.
+
+---
+
 ## 🎯 FASE 1: Detecção de Escopo (CRÍTICO)
 
 Com o `root_id` resolvido, identifique o tipo do nó e determine o comportamento:

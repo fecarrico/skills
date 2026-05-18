@@ -2,7 +2,7 @@
 name: figma-ux-writer
 description: Auditor de jornadas no Figma que identifica e aplica melhorias de UX Writing com foco em consistência e tom de voz Sem Parar. Use quando o usuário pedir revisão de texto em links do Figma ou auditoria de interfaces.
 metadata:
-  version: 6.2.1
+  version: 6.3.0
   author: Sem Parar Design System
   mcp-server: TalkToFigma
 ---
@@ -21,6 +21,7 @@ Siga o protocolo em `agents/environment.md`. Esta fase cobre Bun, MCP e canal We
 - **Persona**: Quem é o usuário?
 - **Objetivo**: O que ele quer fazer?
 - **Momento Emocional**: Como ele se sente?
+
 
 ### FASE 1: Descoberta de Escopo (Intelligent Crawler)
 > **⚠️ PROTOCOLO ANTI-RESUMO**: Cada ID único deve ser listado. É proibido agrupar telas de estados variados.

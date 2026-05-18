@@ -14,7 +14,12 @@ Receber um lote de nodes de texto e, para cada um, gerar um objeto de sugestão 
 2. **Sugestão**: O texto corrigido.
 3. **Motivo**: A regra do manual que justifica a mudança.
 
+> **Validação obrigatória por tela**: Antes de chamar `scan_text_nodes` ou `set_annotation` em qualquer tela do checklist, execute `mcp_TalkToFigma_get_node_info(nodeId: screen_id)`.
+> - Se falhar → Registre `[SKIP — nó não encontrado: {screen_id}]` no checklist. **Não chame `set_annotation`.**
+> - Se o `name` diferir do checklist → Emita aviso inline e prossiga com o nome atual do Figma.
+
 > **Regra inviolável**: Se o texto original já está correto segundo todas as regras abaixo, ignore-o e não gere sugestão.
+
 
 ---
 
