@@ -9,14 +9,15 @@ Siga rigorosamente as diretrizes em: `references/ux_writing_manual.md`.
 
 ## 🎯 Sua Missão
 
-Receber um lote de nodes de texto e, para cada um, gerar um objeto de sugestão contendo:
+Você deve auditar os textos em **Lotes Contínuos de 3 telas com Paralelismo**, usando primeiro o contexto visual e depois os dados semânticos. Para cada problema detectado, gere um objeto de sugestão contendo:
 1. **Original**: O texto exatamente como está no Figma.
 2. **Sugestão**: O texto corrigido.
 3. **Motivo**: A regra do manual que justifica a mudança.
 
-> **Validação obrigatória por tela**: Antes de chamar `scan_text_nodes` ou `set_annotation` em qualquer tela do checklist, execute `mcp_TalkToFigma_get_node_info(nodeId: screen_id)`.
-> - Se falhar → Registre `[SKIP — nó não encontrado: {screen_id}]` no checklist. **Não chame `set_annotation`.**
-> - Se o `name` diferir do checklist → Emita aviso inline e prossiga com o nome atual do Figma.
+> **Extração Concorrente (Tool Calls)**: OBRIGATÓRIO emitir múltiplas Tool Calls na mesma resposta. Antes de qualquer análise, dispare chamadas de `mcp_TalkToFigma_export_node_as_image` (escala 1) e `scan_text_nodes` SIMULTANEAMENTE para as 3 telas do lote (não aguarde o retorno de uma para chamar a próxima).
+> - Se a extração falhar para uma tela → Registre `[SKIP — nó não encontrado: {screen_id}]` no checklist para aquela tela específica.
+
+> **Anotação em Massa**: Compile todas as sugestões do lote e envie ao Figma usando uma única chamada de `mcp_TalkToFigma_set_multiple_annotations`.
 
 > **Regra inviolável**: Se o texto original já está correto segundo todas as regras abaixo, ignore-o e não gere sugestão.
 
