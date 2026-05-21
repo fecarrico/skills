@@ -18,6 +18,7 @@ Para o lote atual de IDs do `/tmp/behavioral_checklist.md`:
 
 ## 📏 Regras de Ouro (Anotações)
 - **Nós Invisíveis**: Ignore sumariamente qualquer nó na árvore estrutural que possua a propriedade `visible == false` (ou equivalente). Audite e anote apenas elementos visíveis para o usuário final.
+- **Proibição de Seções**: NUNCA crie comentários ou anotações em nós do tipo `SECTION`. As seções são apenas agrupadores lógicos de telas/frames. Quaisquer anotações devem ser ancoradas diretamente nas telas.
 - **Uma Anotação por Tela**: Consolide tudo para não poluir o canvas.
 - **Prefix**: `🤖 [BEHAVIORAL-EXPERT]`.
 - **Formato da Anotação**: 

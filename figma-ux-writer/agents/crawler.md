@@ -115,69 +115,37 @@ FUNÇÃO start_discovery(root_id):
         → EXECUTAR discover_screens(root_id)
 ```
 
-### Passo 2: Descoberta Exaustiva com `scan_nodes_by_types`
+### Passo 2: Descoberta Estrutural Controlada (`Top-Down`)
 
-> **REGRA**: Use a ferramenta `scan_nodes_by_types` do MCP em vez de recursão manual. Ela faz busca profunda automaticamente.
-
-```
-FUNÇÃO discover_screens(container_id):
-    # Passo 2a: Busca exaustiva com scan_nodes_by_types
-    results = mcp_TalkToFigma_scan_nodes_by_types(
-        nodeId: container_id,
-        types: ["FRAME", "COMPONENT", "INSTANCE", "SECTION"]
-    )
-    
-    # Passo 2b: Filtrar apenas telas válidas
-    PARA CADA node EM results:
-        SE node.visible == false: CONTINUAR
-        SE node.type == "SECTION": CONTINUAR  # Sections são containers, não telas
-        
-        # Filtro de dimensão
-        SE node.absoluteBoundingBox.height < 100:
-            SE NÃO (node.name CONTÉM "Toast" OU "Modal" OU "Bottom Sheet" OU "Dialog"):
-                CONTINUAR
-        
-        ADICIONAR node à fila_de_auditoria
-    
-    # Passo 2c: Ordenar por posição (top→bottom, left→right) para manter ordem visual
-    ORDENAR fila_de_auditoria POR (node.absoluteBoundingBox.y, node.absoluteBoundingBox.x)
-```
-
-### ⚠️ Fallback: Se `scan_nodes_by_types` não retornar resultados
-
-Se a ferramenta retornar vazia ou com erro, use recursão manual:
+> **REGRA**: NÃO utilize `scan_nodes_by_types` para descoberta de telas, pois ele achata a árvore e traz frames aninhados internos. Use `mcp_TalkToFigma_get_node_info` recursivamente, parando no primeiro nível válido de tela.
 
 ```
-FUNÇÃO discover_screens_fallback(node_id):
-    node_info = get_node_info(node_id)
+FUNÇÃO discover_screens(node_id):
+    node_info = mcp_TalkToFigma_get_node_info(nodeId: node_id)
     
     SE node_info NÃO TEM children: RETORNAR
     
     PARA CADA child EM node_info.children:
         SE child.visible == false: CONTINUAR
-
+        
         SE child.type == "SECTION":
-            # Seções são containers — mergulhar nelas
-            discover_screens_fallback(child.id)
+            # Containers puros: mergulhe neles em profundidade para procurar telas no nível abaixo
+            discover_screens(child.id)
             
         SE child.type EM ("FRAME", "COMPONENT", "INSTANCE"):
-            # Filtro de dimensão
-            SE child.absoluteBoundingBox.height < 100:
-                SE NÃO (child.name CONTÉM "Toast" OU "Modal" OU "Bottom Sheet" OU "Dialog"):
-                    CONTINUAR
-            
-            ADICIONAR child à fila_de_auditoria
-            
-            # ━━━ IMPORTANTE: Verificar se este Frame é um "container" ━━━
-            # Se o Frame tem filhos que TAMBÉM são Frames com height > 100,
-            # então ele é provavelmente um agrupador, não uma tela real.
-            SE child TEM children:
-                sub_frames = [c PARA c EM child.children SE c.type EM ("FRAME", "COMPONENT", "INSTANCE") E c.height > 100]
-                SE len(sub_frames) > 0:
-                    # Este Frame é um container — REMOVER ele da fila e adicionar seus filhos
-                    REMOVER child da fila_de_auditoria
-                    PARA CADA sub EM sub_frames:
-                        ADICIONAR sub à fila_de_auditoria
+            # Checar se as dimensões qualificam como uma Tela real
+            SE child.absoluteBoundingBox.height > 100 OU child.name CONTÉM ("Toast", "Modal", "Bottom Sheet", "Dialog"):
+                ADICIONAR child à fila_de_auditoria
+                
+                # ━━━ IMPORTANTE: Pare a recursão aqui ━━━
+                # Não entre neste Frame/Component para buscar outras telas. 
+                # Isso previne que listas internas, cards ou botões virem "telas" falsas.
+            SENÃO:
+                # Se for muito pequeno (ex: um ícone perdido solto no canvas), ignore.
+                CONTINUAR
+                
+    # Após mapear todas as telas do container inicial, ordene para manter a ordem visual
+    ORDENAR fila_de_auditoria POR (node.absoluteBoundingBox.y, node.absoluteBoundingBox.x)
 ```
 
 ---
@@ -212,8 +180,8 @@ Salve este checklist em `/tmp/audit_checklist.md`.
 | Sair do frame selecionado para olhar a seção pai | Ficar estritamente dentro do nó fornecido |
 | Ignorar a intenção do usuário em prol de "ser exaustivo" | Ser exaustivo APENAS dentro do limite do escopo |
 | Assumir que o usuário quer auditar a página toda | Validar se o alvo é uma tela única ou um container |
-| Usar apenas `get_node_info` para busca recursiva | Preferir `scan_nodes_by_types` para busca profunda |
-| Parar no primeiro nível de Frames dentro de uma Section | Verificar se Frames contêm sub-Frames (containers) |
+| Usar `scan_nodes_by_types` para listar telas | Usar `get_node_info` em busca Top-Down com parada |
+| Verificar recursivamente dentro de Frames | Parar no primeiro nível de Frame válido (>100px) |
 
 ---
 **Regra de Ouro**: Se o usuário te deu um Frame ID, sua jornada começa e termina naquele ID. Se te deu uma Section, mapeie TUDO dentro dela. Se te deu uma Page, mapeie a página inteira.

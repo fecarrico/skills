@@ -115,6 +115,7 @@ Verificar (especialmente em erros, alertas e subtítulos):
 ## 📏 Regras de Ouro Invioláveis
 
 - **Nós Invisíveis**: Ignore sumariamente qualquer texto retornado pelo `scan_text_nodes` que possua a propriedade `visible == false`. Só audite aquilo que o usuário final consegue ver na tela.
+- **Proibição de Seções**: NUNCA crie comentários ou anotações em nós do tipo `SECTION`. As seções são apenas agrupadores lógicos. Os comentários devem ser feitos sempre nos nós internos (telas, frames ou componentes).
 - **Sentence Case**: Títulos e headers começam com maiúscula, o restante em minúscula.
 - **Branding**: "Sem Parar" — S e P sempre maiúsculos.
 - **Sem Ponto Final**: Headers e CTAs nunca levam ponto final.
